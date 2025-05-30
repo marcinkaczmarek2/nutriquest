@@ -27,8 +27,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import tp.nutriquest.ui.screens.LoginScreen
-import tp.nutriquest.ui.screens.SetBackground
+import tp.nutriquest.ui.screens.LoginScreenSetup
 import tp.nutriquest.ui.theme.NutriquestTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,7 +38,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             NutriquestTheme {
-                SetBackground()
+                LoginScreenSetup()
             }
         }
     }

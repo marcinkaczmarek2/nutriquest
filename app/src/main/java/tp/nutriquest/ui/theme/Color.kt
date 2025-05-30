@@ -12,3 +12,6 @@ val Pink40 = Color(0xFF7D5260)
 
 val BackgroundGreen = Color(0xFF094D26)
 val BackgroundGrey = Color(0xFFE8E8E8)
+
+val TextFieldGreen = Color(0xFF57986E)
+val LoginYellow = Color(0xFFFFD630)
