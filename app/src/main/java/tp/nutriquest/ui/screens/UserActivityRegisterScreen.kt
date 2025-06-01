@@ -170,9 +170,9 @@ fun UserActivityRegisterScreenInitialize() {
                         valueRange = 0f..8f,
                         steps = 0,
                         colors = SliderDefaults.colors(
-                            activeTrackColor = BackgroundGreen,     // kolor wypełnionej części
-                            inactiveTrackColor = Color.White,    // kolor niewypełnionej części
-                            thumbColor = LoginYellow              // kolor uchwytu (knob)
+                            activeTrackColor = BackgroundGreen,
+                            inactiveTrackColor = Color.White,
+                            thumbColor = LoginYellow
                         ),
                         modifier = Modifier
                             .offset(y = componentOffset)

@@ -86,13 +86,6 @@ fun AllergySelector(
                         }
                     }
                 }
-
-                // Dodaj puste miejsca jeśli nie ma pełnych 3 elementów w rzędzie
-                if (rowItems.size < 3) {
-                    repeat(3 - rowItems.size) {
-                        Spacer(modifier = Modifier.weight(1f))
-                    }
-                }
             }
         }
     }

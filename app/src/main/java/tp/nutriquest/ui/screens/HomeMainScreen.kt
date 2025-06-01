@@ -90,11 +90,12 @@ fun HomeMainScreenInitialize() {
                         .fillMaxSize()
                         .background(BackgroundGreen)
                 )   {
+                    //TODO zaimplementowac na stale akcje na klikniecie, zeby przy kazdym wywolaniu nie musiec tego implementowac
                     IconRow(
-                        onHomeClick = { /* akcja po kliknięciu home */ },
-                        onStatsClick = { /* akcja po kliknięciu stats */ },
-                        onEducationClick = { /* akcja po kliknięciu education */ },
-                        onOptionsClick = { /* akcja po kliknięciu options */ },
+                        onHomeClick = {  },
+                        onStatsClick = {  },
+                        onEducationClick = {  },
+                        onOptionsClick = {  },
                         lowerMenuOffset
                     )
 
@@ -117,7 +118,6 @@ fun HomeMainScreenInitialize() {
                             .fillMaxWidth()
                             .padding(horizontal = 20.dp, vertical = 30.dp)
                     ) {
-                        // Lewy element (logo)
                         Box(
                             modifier = Modifier
                                 .align(Alignment.CenterStart)
@@ -133,7 +133,6 @@ fun HomeMainScreenInitialize() {
                             )
                         }
 
-                        // Środkowy tekst
                         Text(
                             text = "NUTRITION QUEST",
                             color = BackgroundGreen,
@@ -143,7 +142,6 @@ fun HomeMainScreenInitialize() {
                             textAlign = TextAlign.Center
                         )
 
-                        // Prawy element (streak)
                         Card(
                             modifier = Modifier
                                 .align(Alignment.CenterEnd)

@@ -33,6 +33,7 @@ import tp.nutriquest.ui.screens.UserActivityRegisterScreenInitialize
 import tp.nutriquest.ui.screens.UserAllergyRegisterScreenInitialize
 import tp.nutriquest.ui.screens.UserGoalRegisterScreenInitialize
 import tp.nutriquest.ui.screens.HomeMainScreenInitialize
+import tp.nutriquest.ui.screens.StatsMainScreenInitialize
 import tp.nutriquest.ui.theme.NutriquestTheme
 
 class MainActivity : ComponentActivity() {
@@ -43,7 +44,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             NutriquestTheme {
-                HomeMainScreenInitialize()
+                StatsMainScreenInitialize()
             }
         }
     }
