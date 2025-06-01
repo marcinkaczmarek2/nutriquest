@@ -84,7 +84,7 @@ fun LoginScreenSetup() {
                         Box(
                             modifier = Modifier
                                 .background(
-                                    color = Color(0xFFFFD700),
+                                    color = LoginYellow,
                                     shape = RoundedCornerShape(16.dp)
                                 )
                                 .padding(16.dp)

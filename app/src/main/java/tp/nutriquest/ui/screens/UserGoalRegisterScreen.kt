@@ -43,6 +43,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import tp.nutriquest.ui.components.GoalSelector
+import tp.nutriquest.ui.data.Goal
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
@@ -159,63 +161,5 @@ fun UserGoalRegisterScreenInitialize() {
     }
 }
 
-@Composable
-fun GoalSelector(
-    options: List<Goal>,
-    selectedOptions: Set<String>,
-    onOptionSelected: (String) -> Unit,
-    offset: Dp,
-    width: Float
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth(width)
-            .offset(y = offset),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        options.forEach { option ->
-            val isSelected = selectedOptions.contains(option.name)
-
-            Spacer(modifier = Modifier.height(5.dp))
-
-            Card(
-                modifier = Modifier
-                    .height(60.dp)
-                    .fillMaxWidth()
-                    .clickable { onOptionSelected(option.name) },
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = if (isSelected) LoginYellow else BackgroundGreen
-                ),
-                border = if (isSelected) BorderStroke(2.dp, Color(0xFF388E3C)) else null
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 10.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = option.name,
-                        color = if (isSelected) Color.Black else Color.White,
-                        fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
-                    )
-
-                    Image(
-                        painter = painterResource(id = option.iconRes),
-                        contentDescription = option.name,
-                        colorFilter = ColorFilter.tint(if (isSelected) Color.Black else LoginYellow),
-                        modifier = Modifier.size(45.dp)
-                    )
-                }
-            }
-        }
-    }
-}
 
 
-data class Goal(
-    val name: String,
-    val iconRes: Int
-)

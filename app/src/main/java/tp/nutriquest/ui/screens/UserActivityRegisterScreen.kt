@@ -37,6 +37,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import tp.nutriquest.ui.components.DietSelector
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
@@ -263,45 +264,3 @@ fun UserActivityRegisterScreenInitialize() {
     }
 }
 
-@Composable
-fun DietSelector(
-    options: List<String> = listOf("Regular", "Vegetarian", "Vegan"),
-    selectedOption: String,
-    onOptionSelected: (String) -> Unit,
-    offset: Dp,
-    width: Float
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth(width)
-            .offset(y = offset),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        options.forEach { option ->
-            val isSelected = option == selectedOption
-            Card(
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-                    .clickable { onOptionSelected(option) },
-                shape = RoundedCornerShape(16.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = if (isSelected) LoginYellow else BackgroundGreen
-                ),
-                border = if (isSelected) BorderStroke(2.dp, Color(0xFF388E3C)) else null
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(vertical = 13.dp, horizontal = 20.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = option,
-                        color = if (isSelected) Color.Black else Color.White,
-                        fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
-                    )
-                }
-            }
-        }
-    }
-}

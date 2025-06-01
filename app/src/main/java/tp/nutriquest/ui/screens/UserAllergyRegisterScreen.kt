@@ -43,6 +43,8 @@ import androidx.compose.ui.unit.Dp
 import tp.nutriquest.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import tp.nutriquest.ui.components.AllergySelector
+import tp.nutriquest.ui.data.AllergyOption
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
@@ -222,74 +224,4 @@ fun UserAllergyRegisterScreenInitialize() {
     }
 }
 
-@Composable
-fun AllergySelector(
-    options: List<AllergyOption>,
-    selectedOptions: Set<String>,
-    onOptionToggled: (String) -> Unit,
-    offset: Dp,
-    width: Float
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth(width)
-            .offset(y = offset),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        options.chunked(3).forEach { rowItems ->
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                rowItems.forEach { option ->
-                    val isSelected = selectedOptions.contains(option.name)
 
-                    Card(
-                        modifier = Modifier
-                            .weight(1f)
-                            .aspectRatio(1f)
-                            .clickable { onOptionToggled(option.name) },
-                        shape = RoundedCornerShape(16.dp),
-                        border = if (isSelected) BorderStroke(2.dp, Color(0xFF388E3C)) else null,
-                        colors = CardDefaults.cardColors(
-                            containerColor = if (isSelected) LoginYellow else BackgroundGreen
-                        )
-                    ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(8.dp),
-                            verticalArrangement = Arrangement.Center,
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Image(
-                                painter = painterResource(id = option.iconRes),
-                                contentDescription = option.name,
-                                modifier = Modifier.size(50.dp)
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = option.name,
-                                color = if (isSelected) Color.Black else Color.White,
-                                fontSize = 16.sp,
-                                fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
-                            )
-                        }
-                    }
-                }
-
-                // Dodaj puste miejsca jeśli nie ma pełnych 3 elementów w rzędzie
-                if (rowItems.size < 3) {
-                    repeat(3 - rowItems.size) {
-                        Spacer(modifier = Modifier.weight(1f))
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-data class AllergyOption(
-    val name: String, val iconRes: Int
-)
