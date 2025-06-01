@@ -215,14 +215,16 @@ fun UserActivityRegisterScreenInitialize() {
                     Button(
                         onClick = {},
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = LoginYellow, contentColor = Color.White
+                            containerColor = LoginYellow,
+                            contentColor = Color.White
                         ),
                         modifier = Modifier
                             .fillMaxWidth(componentWidth)
                             .offset(y = componentOffset)
                     ) {
                         Text(
-                            text = "Continue", fontSize = 26.sp
+                            text = "Continue",
+                            fontSize = 26.sp
                         )
                     }
                 }
@@ -235,7 +237,8 @@ fun UserActivityRegisterScreenInitialize() {
                     .height(boxHeight)
                     .clip(
                         RoundedCornerShape(
-                            bottomStart = 10.dp, bottomEnd = 10.dp
+                            bottomStart = 10.dp,
+                            bottomEnd = 10.dp
                         )
                     )
                     .background(BackgroundGreen)
@@ -288,7 +291,8 @@ fun DietSelector(
                 border = if (isSelected) BorderStroke(2.dp, Color(0xFF388E3C)) else null
             ) {
                 Box(
-                    modifier = Modifier.padding(vertical = 13.dp, horizontal = 20.dp),
+                    modifier = Modifier
+                        .padding(vertical = 13.dp, horizontal = 20.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(

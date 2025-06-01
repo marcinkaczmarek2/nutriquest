@@ -31,6 +31,7 @@ import tp.nutriquest.ui.screens.LoginScreenSetup
 import tp.nutriquest.ui.screens.UserDataRegisterScreenInitialize
 import tp.nutriquest.ui.screens.UserActivityRegisterScreenInitialize
 import tp.nutriquest.ui.screens.UserAllergyRegisterScreenInitialize
+import tp.nutriquest.ui.screens.UserGoalRegisterScreenInitialize
 import tp.nutriquest.ui.theme.NutriquestTheme
 
 class MainActivity : ComponentActivity() {
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             NutriquestTheme {
-                UserAllergyRegisterScreenInitialize()
+                UserGoalRegisterScreenInitialize()
             }
         }
     }
