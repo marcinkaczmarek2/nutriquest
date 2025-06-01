@@ -153,6 +153,7 @@ fun LoginPanel(offsetFromTop: Dp) {
                     .background(TextFieldGreen)
                     .border(0.dp, TextFieldGreen)
                 //TODO dodac ikonke user
+                //TODO zapisywac gdzies wczytywane dane, badz je gdzies przekazywac
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -167,6 +168,7 @@ fun LoginPanel(offsetFromTop: Dp) {
                     .background(TextFieldGreen)
                     .border(0.dp, TextFieldGreen)
                 //TODO dodac ikonke klodki
+                //TODO zapisywac gdzies wczytywane dane, badz je gdzies przekazywac
             )
 
             Spacer(modifier = Modifier.height(4.dp))
