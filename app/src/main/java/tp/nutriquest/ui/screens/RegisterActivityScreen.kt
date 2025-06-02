@@ -1,9 +1,6 @@
 package tp.nutriquest.ui.screens
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,13 +13,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -44,14 +40,14 @@ import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
-fun UserActivityRegisterScreenInitialize(navController: NavController) {
+fun RegisterActivityScreenInitialize(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
     val componentOffset = boxHeight + 20.dp
     val componentWidth = 0.8f
-    var activityHours by remember { mutableStateOf(0f) }
-    var mealsPerDay by remember { mutableStateOf(0f) }
+    var activityHours by remember { mutableFloatStateOf(0f) }
+    var mealsPerDay by remember { mutableFloatStateOf(0f) }
     var selectedDiet by remember { mutableStateOf("Regular") }
     Box(
         modifier = Modifier.fillMaxSize()

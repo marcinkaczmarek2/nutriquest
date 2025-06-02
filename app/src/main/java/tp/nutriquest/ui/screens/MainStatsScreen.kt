@@ -1,24 +1,17 @@
 package tp.nutriquest.ui.screens
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -27,12 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,16 +30,17 @@ import tp.nutriquest.R
 import tp.nutriquest.ui.components.AchievementCompose
 import tp.nutriquest.ui.components.CheckpointProgressBar
 import tp.nutriquest.ui.components.LowerNavigationMenu
+import tp.nutriquest.ui.components.MainScreenContentColumnModifier
 import tp.nutriquest.ui.components.TaskChart
+import tp.nutriquest.ui.components.TopLogoAndStats
 import tp.nutriquest.ui.data.Achievement
 import tp.nutriquest.ui.data.Progress
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
-import tp.nutriquest.ui.theme.LoginYellow
 import tp.nutriquest.ui.theme.QuestGreen
 
 @Composable
-fun StatsMainScreenInitialize(navController: NavController) {
+fun MainStatsScreenInitialize(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.9f
@@ -97,84 +87,16 @@ fun StatsMainScreenInitialize(navController: NavController) {
                     )
                     .background(BackgroundGrey)
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 30.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .background(color = LoginYellow, shape = RoundedCornerShape(16.dp))
-                            .padding(8.dp)
-                    ) {
-                        Image(
-                            painter = painterResource(R.drawable.nutriquest_logo),
-                            contentDescription = "App logo",
-                            modifier = Modifier
-                                .height(50.dp)
-                                .width(60.dp)
-                        )
-                    }
 
-                    Text(
-                        text = "NUTRITION QUEST",
-                        color = BackgroundGreen,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.ExtraBold,
-                        textAlign = TextAlign.Center,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.weight(1f).padding(horizontal = 8.dp)
-                    )
+                TopLogoAndStats()
 
-                    Card(
-                        modifier = Modifier
-                            .height(50.dp),
-                        shape = RoundedCornerShape(16.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = BackgroundGreen
-                        ),
-                        border = BorderStroke(2.dp, BackgroundGreen)
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .padding(horizontal = 12.dp, vertical = 10.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.streak_icon),
-                                contentDescription = "flame icon",
-                                colorFilter = ColorFilter.tint(LoginYellow),
-                                modifier = Modifier.size(30.dp)
-                            )
-
-                            Spacer(modifier = Modifier.width(8.dp))
-
-                            Text(
-                                text = "100", // TODO: podmień na faktyczny streak
-                                color = LoginYellow,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 24.sp
-                            )
-                        }
-                    }
-                }
                 Box(
                     modifier = Modifier
                         .fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
                     Column(
-                        modifier = Modifier
-                            .fillMaxWidth(0.8f)
-                            .fillMaxHeight(0.9f)
-                            .padding(top = 70.dp)
-                            .clip(RoundedCornerShape(20.dp))
-                            .background(Color.White)
-                            .padding(16.dp)
-                            .verticalScroll(scrollState)
+                        modifier = MainScreenContentColumnModifier(scrollState)
                     ) {
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
