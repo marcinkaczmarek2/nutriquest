@@ -3,8 +3,6 @@ package tp.nutriquest.ui.screens
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,14 +15,11 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -39,25 +34,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import tp.nutriquest.R
-import tp.nutriquest.ui.components.AchievementCompose
-import tp.nutriquest.ui.components.CheckpointProgressBar
-import tp.nutriquest.ui.components.GoalCard
-import tp.nutriquest.ui.components.IconRow
-import tp.nutriquest.ui.components.TaskChart
-import tp.nutriquest.ui.data.Achievement
+import tp.nutriquest.ui.components.LowerNavigationMenu
 import tp.nutriquest.ui.data.Goal
 import tp.nutriquest.ui.data.GoalOverview
-import tp.nutriquest.ui.data.Progress
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
-import tp.nutriquest.ui.theme.GoalGreen
 import tp.nutriquest.ui.theme.LoginYellow
-import androidx.compose.material.icons.Icons
 import tp.nutriquest.ui.components.GoalOverviewCard
 
 @Composable
-fun EducationMainScreenInitialize() {
+fun EducationMainScreenInitialize(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.9f
@@ -112,11 +100,8 @@ fun EducationMainScreenInitialize() {
                     .fillMaxSize()
                     .background(BackgroundGreen)
             ) {
-                IconRow(
-                    onHomeClick = { },
-                    onStatsClick = { },
-                    onEducationClick = { },
-                    onOptionsClick = { },
+                LowerNavigationMenu(
+                    navController,
                     lowerMenuOffset
                 )
 

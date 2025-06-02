@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.Dp
 import tp.nutriquest.R
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import tp.nutriquest.ui.components.AllergySelector
 import tp.nutriquest.ui.data.AllergyOption
 import tp.nutriquest.ui.theme.BackgroundGreen
@@ -50,7 +51,7 @@ import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
-fun UserAllergyRegisterScreenInitialize() {
+fun UserAllergyRegisterScreenInitialize(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
@@ -177,7 +178,9 @@ fun UserAllergyRegisterScreenInitialize() {
 
 
                     Button(
-                        onClick = {},
+                        onClick = {
+                            navController.navigate("register_goal")
+                        },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = LoginYellow, contentColor = Color.White
                         ),

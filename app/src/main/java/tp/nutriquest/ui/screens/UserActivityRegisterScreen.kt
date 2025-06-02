@@ -37,13 +37,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import tp.nutriquest.ui.components.DietSelector
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
-fun UserActivityRegisterScreenInitialize() {
+fun UserActivityRegisterScreenInitialize(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
@@ -214,7 +215,9 @@ fun UserActivityRegisterScreenInitialize() {
 
 
                     Button(
-                        onClick = {},
+                        onClick = {
+                            navController.navigate("register_allergy")
+                        },
                         colors = ButtonDefaults.buttonColors(
                             containerColor = LoginYellow,
                             contentColor = Color.White
@@ -257,7 +260,6 @@ fun UserActivityRegisterScreenInitialize() {
                     style = TextStyle(
                         lineHeight = 44.sp
                     )
-
                 )
             }
         }

@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.absoluteOffset
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
@@ -23,7 +24,9 @@ import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxColors
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -36,16 +39,23 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import tp.nutriquest.R
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
 import tp.nutriquest.ui.theme.TextFieldGreen
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.draw.alpha
+import tp.nutriquest.ui.components.CustomOutlinedTextField
 import tp.nutriquest.ui.theme.Typography
 
 
 @Composable
-fun LoginScreenSetup() {
+fun LoginScreenSetup(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.75f
@@ -127,12 +137,16 @@ fun LoginScreenSetup() {
                 }
             }
         }
-        LoginPanel(offsetFromTop = boxHeight - 150.dp)
+        LoginPanel(offsetFromTop = boxHeight - 150.dp, navController)
     }
 }
 
 @Composable
-fun LoginPanel(offsetFromTop: Dp) {
+fun LoginPanel(offsetFromTop: Dp, navController: NavController) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var rememberMeChecked by remember { mutableStateOf(false) }
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -144,32 +158,35 @@ fun LoginPanel(offsetFromTop: Dp) {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             //TODO ZROBIC ZEBY SIE DALO PISAC W TYCH FIELDACH
-            OutlinedTextField(
-                value = "Email",
-                onValueChange = {},
+
+            CustomOutlinedTextField(
+                label = "Email",
+                value = email,
+                onValueChange = { email = it },
                 modifier = Modifier
+                    .offset(y = 0.dp)
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(24.dp))
-                    .background(TextFieldGreen)
-                    .border(0.dp, TextFieldGreen)
+                    .align(Alignment.CenterHorizontally)
+            )
+
                 //TODO dodac ikonke user
                 //TODO zapisywac gdzies wczytywane dane, badz je gdzies przekazywac
-            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            OutlinedTextField(
-                value = "Password",
-                onValueChange = {},
-                visualTransformation = PasswordVisualTransformation(),
+            CustomOutlinedTextField(
+                label = "Password",
+                value = password,
+                onValueChange = { password = it },
+                isPassword = true,
                 modifier = Modifier
+                    .offset(y = 0.dp)
                     .fillMaxWidth()
-                    .clip(RoundedCornerShape(24.dp))
-                    .background(TextFieldGreen)
-                    .border(0.dp, TextFieldGreen)
-                //TODO dodac ikonke klodki
-                //TODO zapisywac gdzies wczytywane dane, badz je gdzies przekazywac
+                    .align(Alignment.CenterHorizontally)
             )
+
+            //TODO dodac ikonke klodki i opcje show passowrt
+            //TODO zapisywac gdzies wczytywane dane, badz je gdzies przekazywac
 
             Spacer(modifier = Modifier.height(4.dp))
 
@@ -178,15 +195,19 @@ fun LoginPanel(offsetFromTop: Dp) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Checkbox(
-                    checked = false,
-                    onCheckedChange = {},
+                    checked = rememberMeChecked,
+                    onCheckedChange = { rememberMeChecked = it},
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = BackgroundGreen,
+                        uncheckedColor = BackgroundGreen,
+                        checkmarkColor = Color.White
+                    )
                     //TODO zmienic kolor checkbox oraz zeby sie dalo zaznaczyc
                 )
                 Text(
                     text = "Remember Me",
                     fontSize = 12.sp,
                     color = BackgroundGreen,
-                    modifier = Modifier.padding(start = 8.dp)
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
@@ -203,7 +224,9 @@ fun LoginPanel(offsetFromTop: Dp) {
                 //TODO w onClick funkcja sprawdzajaca czy dane sie zgadzaja (zwraca true jezeli sie zgadzaja)
                 //TODO jezeli FALSE wyswietla sie odpowiedni komunikat
                 //TODO jezeli TRUE zostajemy przeniesieni do odpowiedniego ekranu
-                onClick = {},
+                onClick = {
+                    navController.navigate("home")
+                },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = LoginYellow,
                     contentColor = Color.White
@@ -232,7 +255,7 @@ fun LoginPanel(offsetFromTop: Dp) {
                     color = BackgroundGreen,
                     modifier = Modifier
                         .clickable {
-                            //TODO przeniesc do RegisterScreen (trzeba go napisac)
+                            navController.navigate("register_data")
                         }
                 )
             }

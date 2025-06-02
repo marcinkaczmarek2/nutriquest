@@ -40,17 +40,29 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import tp.nutriquest.ui.components.CustomOutlinedTextField
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
-fun UserDataRegisterScreenInitialize() {
+fun UserDataRegisterScreenInitialize(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
     val textFieldOffset = boxHeight + 20.dp
     val fieldWidth = 0.8f
+
+    var email by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+    var surname by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var height by remember { mutableStateOf("") }
+    var weight by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("") }
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -67,117 +79,100 @@ fun UserDataRegisterScreenInitialize() {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     //TODO na wszystkich guzikach zmienic kolor tekstu, naprawic ramki, tekst bardziej do prawej
-                    OutlinedTextField(
-                        value = "Email",
-                        onValueChange = {},
+                    CustomOutlinedTextField(
+                        label = "Email",
+                        value = email,
+                        onValueChange = { email = it },
                         modifier = Modifier
                             .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(Color.White)
-                            .border(0.dp, Color.White)
                             .align(Alignment.CenterHorizontally)
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    OutlinedTextField(
-                        value = "Name",
-                        onValueChange = {},
+                    CustomOutlinedTextField(
+                        label = "Name",
+                        value = name,
+                        onValueChange = { name = it },
                         modifier = Modifier
                             .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(Color.White)
-                            .border(0.dp, Color.White)
                             .align(Alignment.CenterHorizontally)
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    OutlinedTextField(
-                        value = "Surname",
-                        onValueChange = {},
+                    CustomOutlinedTextField(
+                        label = "Surname",
+                        value = surname,
+                        onValueChange = { surname = it },
                         modifier = Modifier
                             .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(Color.White)
-                            .border(0.dp, Color.White)
                             .align(Alignment.CenterHorizontally)
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    OutlinedTextField(
-                        value = "Username",
-                        onValueChange = {},
+                    CustomOutlinedTextField(
+                        label = "Username",
+                        value = username,
+                        onValueChange = { username = it },
                         modifier = Modifier
                             .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(Color.White)
-                            .border(0.dp, Color.White)
                             .align(Alignment.CenterHorizontally)
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    OutlinedTextField(
-                        value = "Password",
-                        onValueChange = {},
-                        visualTransformation = PasswordVisualTransformation(),
+                    CustomOutlinedTextField(
+                        label = "Password",
+                        value = password,
+                        onValueChange = { password = it },
+                        isPassword = true,
                         modifier = Modifier
                             .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(Color.White)
-                            .border(0.dp, Color.White)
                             .align(Alignment.CenterHorizontally)
-                        //TODO dodac guzik show password, oraz "nazwa" pola ma byc widoczna
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    OutlinedTextField(
-                        value = "Height",
-                        onValueChange = {},
+                    CustomOutlinedTextField(
+                        label = "Height",
+                        value = height,
+                        onValueChange = { height = it },
                         modifier = Modifier
                             .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(Color.White)
-                            .border(0.dp, Color.White)
                             .align(Alignment.CenterHorizontally)
                     )
 
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    OutlinedTextField(
-                        value = "Weight",
-                        onValueChange = {},
+                    CustomOutlinedTextField(
+                        label = "Weight",
+                        value = weight,
+                        onValueChange = { weight = it },
                         modifier = Modifier
                             .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(Color.White)
-                            .border(0.dp, Color.White)
                             .align(Alignment.CenterHorizontally)
                     )
 
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    OutlinedTextField(
-                        value = "Gender",
-                        onValueChange = {},
+                    CustomOutlinedTextField(
+                        label = "Gender",
+                        value = gender,
+                        onValueChange = { gender = it },
                         modifier = Modifier
                             .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
-                            .clip(RoundedCornerShape(24.dp))
-                            .background(Color.White)
-                            .border(0.dp, Color.White)
                             .align(Alignment.CenterHorizontally)
                     )
 
@@ -187,7 +182,9 @@ fun UserDataRegisterScreenInitialize() {
                         //TODO dodac onClick przeslanie tych danych a konkretnie funkcje validujaca dane, a nastepnie
                         //TODO jezeli FALSE wyswietla sie odpowiedni komunikat
                         //TODO jezeli TRUE zostajemy przeniesieni do odpowiedniego ekranu
-                        onClick = {}, colors = ButtonDefaults.buttonColors(
+                        onClick = {
+                            navController.navigate("register_activity")
+                        }, colors = ButtonDefaults.buttonColors(
                             containerColor = LoginYellow, contentColor = Color.White
                         ), modifier = Modifier
                             .fillMaxWidth(fieldWidth)

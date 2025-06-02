@@ -27,6 +27,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import tp.nutriquest.ui.screens.EducationMainScreenInitialize
 import tp.nutriquest.ui.screens.LoginScreenSetup
 import tp.nutriquest.ui.screens.UserDataRegisterScreenInitialize
@@ -46,7 +49,22 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             NutriquestTheme {
-                EducationMainScreenInitialize()
+                val navController = rememberNavController()
+
+                NavHost(navController = navController, startDestination = "login") {
+
+                    composable("login") { LoginScreenSetup(navController) }
+
+                    composable("register_data") { UserDataRegisterScreenInitialize(navController) }
+                    composable("register_activity") { UserActivityRegisterScreenInitialize(navController) }
+                    composable("register_allergy") { UserAllergyRegisterScreenInitialize(navController) }
+                    composable("register_goal") { UserGoalRegisterScreenInitialize(navController) }
+
+                    composable("home") { HomeMainScreenInitialize(navController) }
+                    composable("stats") { StatsMainScreenInitialize(navController) }
+                    composable("education") { EducationMainScreenInitialize(navController) }
+                    composable("settings") { SettingsMainScreenInitialize(navController) }
+                }
             }
         }
     }

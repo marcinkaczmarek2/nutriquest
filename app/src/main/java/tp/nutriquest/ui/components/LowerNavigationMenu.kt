@@ -16,17 +16,22 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import tp.nutriquest.R
 import tp.nutriquest.ui.theme.LoginYellow
 
+
 @Composable
-fun IconRow(
-    onHomeClick: () -> Unit,
-    onStatsClick: () -> Unit,
-    onEducationClick: () -> Unit,
-    onOptionsClick: () -> Unit,
+fun LowerNavigationMenu(
+    navController: NavController,
     offset: Dp
-) {
+)
+{
+    val actions = createIconClickActions(navController)
+    val onHomeClick = actions.onHomeClick
+    val onStatsClick = actions.onStatsClick
+    val onEducationClick = actions.onEducationClick
+    val onOptionsClick = actions.onOptionsClick
     Row(
         modifier = Modifier
             .fillMaxWidth()
