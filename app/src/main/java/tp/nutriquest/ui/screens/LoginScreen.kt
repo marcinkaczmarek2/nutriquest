@@ -19,6 +19,8 @@ import androidx.compose.foundation.layout.absoluteOffset
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -56,93 +58,76 @@ import tp.nutriquest.ui.theme.Typography
 
 @Composable
 fun LoginScreenSetup(navController: NavController) {
-    val configuration = LocalConfiguration.current
-    val screenHeightDp: Dp = configuration.screenHeightDp.dp
-    val boxHeight = screenHeightDp * 0.75f
+    val scrollState = rememberScrollState()
 
-    Box(
-        modifier = Modifier.fillMaxSize()
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(scrollState)
+            .background(BackgroundGreen)
     ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            //green box (lower one)
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(BackgroundGreen)
-            )
-
-            //grey box (upper one)
-            Box(
-
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(boxHeight)
-                    .clip(
-                        RoundedCornerShape(
-                            bottomStart = 10.dp,
-                            bottomEnd = 10.dp
-                        )
-                    )
-                    .background(BackgroundGrey),
-                contentAlignment = Alignment.Center,
-            ) {
+        // Logo + Teksty
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(BackgroundGrey)
+                .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
+                .padding(vertical = 24.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Box(
                     modifier = Modifier
-                        .padding(16.dp)
+                        .background(
+                            color = LoginYellow,
+                            shape = RoundedCornerShape(16.dp)
+                        )
+                        .padding(12.dp)
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Box(
-                            modifier = Modifier
-                                .background(
-                                    color = LoginYellow,
-                                    shape = RoundedCornerShape(16.dp)
-                                )
-                                .padding(16.dp)
-
-                        ) {
-                            Image(
-                                //TODO LOGO JEST TROCHE ROZPIXELOWOWANE WIEC FAJNIE BY BYLO JE PODMIENIC NA SVG
-                                painter = painterResource(R.drawable.nutriquest_logo),
-                                contentDescription = "App logo",
-                                modifier = Modifier
-                                    .height(200.dp)
-                                    .width(275.dp)
-                            )
-                        }
-
-                        Text(
-                            text = "NUTRIQUEST",
-                            modifier = Modifier.padding(top = 20.dp),
-                            color = BackgroundGreen,
-                            fontSize = 36.sp,
-                            fontWeight = FontWeight.ExtraBold
-                        )
-
-                        Text(
-                            text = "YOUR PERSONAL",
-                            modifier = Modifier.padding(top = 2.dp),
-                            color = BackgroundGreen,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-                        Text(
-                            text = "NUTRITION CONTROLLER",
-                            color = BackgroundGreen,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Medium
-                        )
-
-
-                    }
+                    Image(
+                        painter = painterResource(R.drawable.nutriquest_logo),
+                        contentDescription = "App logo",
+                        modifier = Modifier
+                            .height(120.dp) // było 200.dp
+                            .width(160.dp)  // było 275.dp
+                    )
                 }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "NUTRIQUEST",
+                    color = BackgroundGreen,
+                    fontSize = 30.sp,
+                    fontWeight = FontWeight.ExtraBold
+                )
+
+                Text(
+                    text = "YOUR PERSONAL",
+                    color = BackgroundGreen,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Medium
+                )
+
+                Text(
+                    text = "NUTRITION CONTROLLER",
+                    color = BackgroundGreen,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Medium
+                )
             }
         }
-        LoginPanel(offsetFromTop = boxHeight - 150.dp, navController)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Login Panel bez offsetu
+        LoginPanel(navController = navController)
     }
 }
 
+
 @Composable
-fun LoginPanel(offsetFromTop: Dp, navController: NavController) {
+fun LoginPanel(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var rememberMeChecked by remember { mutableStateOf(false) }
@@ -151,26 +136,19 @@ fun LoginPanel(offsetFromTop: Dp, navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp)
-            .absoluteOffset(y = offsetFromTop)
             .background(Color.White)
             .padding(24.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            //TODO ZROBIC ZEBY SIE DALO PISAC W TYCH FIELDACH
-
             CustomOutlinedTextField(
                 label = "Email",
                 value = email,
                 onValueChange = { email = it },
                 modifier = Modifier
-                    .offset(y = 0.dp)
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally)
             )
-
-                //TODO dodac ikonke user
-                //TODO zapisywac gdzies wczytywane dane, badz je gdzies przekazywac
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -180,13 +158,9 @@ fun LoginPanel(offsetFromTop: Dp, navController: NavController) {
                 onValueChange = { password = it },
                 isPassword = true,
                 modifier = Modifier
-                    .offset(y = 0.dp)
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally)
             )
-
-            //TODO dodac ikonke klodki i opcje show passowrt
-            //TODO zapisywac gdzies wczytywane dane, badz je gdzies przekazywac
 
             Spacer(modifier = Modifier.height(4.dp))
 
@@ -196,13 +170,12 @@ fun LoginPanel(offsetFromTop: Dp, navController: NavController) {
             ) {
                 Checkbox(
                     checked = rememberMeChecked,
-                    onCheckedChange = { rememberMeChecked = it},
+                    onCheckedChange = { rememberMeChecked = it },
                     colors = CheckboxDefaults.colors(
                         checkedColor = BackgroundGreen,
                         uncheckedColor = BackgroundGreen,
                         checkmarkColor = Color.White
                     )
-                    //TODO zmienic kolor checkbox oraz zeby sie dalo zaznaczyc
                 )
                 Text(
                     text = "Remember Me",
@@ -214,16 +187,12 @@ fun LoginPanel(offsetFromTop: Dp, navController: NavController) {
                     text = "Forgot Password?",
                     fontSize = 12.sp,
                     color = BackgroundGreen
-                    //TODO dodac mozliwosc klikniecia (nwm czy wprowadzamy to)
                 )
             }
 
             Spacer(modifier = Modifier.height(20.dp))
 
             Button(
-                //TODO w onClick funkcja sprawdzajaca czy dane sie zgadzaja (zwraca true jezeli sie zgadzaja)
-                //TODO jezeli FALSE wyswietla sie odpowiedni komunikat
-                //TODO jezeli TRUE zostajemy przeniesieni do odpowiedniego ekranu
                 onClick = {
                     navController.navigate("home")
                 },
@@ -240,6 +209,7 @@ fun LoginPanel(offsetFromTop: Dp, navController: NavController) {
             }
 
             Spacer(modifier = Modifier.height(12.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(0.9f),
                 verticalAlignment = Alignment.CenterVertically
@@ -253,16 +223,13 @@ fun LoginPanel(offsetFromTop: Dp, navController: NavController) {
                     text = "Create an account",
                     fontSize = 12.sp,
                     color = BackgroundGreen,
-                    modifier = Modifier
-                        .clickable {
-                            navController.navigate("register_data")
-                        }
+                    modifier = Modifier.clickable {
+                        navController.navigate("register_data")
+                    }
                 )
             }
-
-
         }
-
     }
 }
+
 

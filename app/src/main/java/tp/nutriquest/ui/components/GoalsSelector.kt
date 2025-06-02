@@ -36,13 +36,11 @@ fun GoalSelector(
     options: List<Goal>,
     selectedOptions: Set<String>,
     onOptionSelected: (String) -> Unit,
-    offset: Dp,
     width: Float
 ) {
     Column(
         modifier = Modifier
-            .fillMaxWidth(width)
-            .offset(y = offset),
+            .fillMaxWidth(width),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         options.forEach { option ->

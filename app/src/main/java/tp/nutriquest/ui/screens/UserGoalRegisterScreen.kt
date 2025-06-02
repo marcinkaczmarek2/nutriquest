@@ -15,7 +15,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -65,6 +67,7 @@ fun UserGoalRegisterScreenInitialize(navController: NavController) {
         Goal("Improve concentration", R.drawable.concentration_icon)
     )
     var selectedGoals by remember { mutableStateOf(setOf<String>()) }
+    val scrollState = rememberScrollState()
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -78,9 +81,12 @@ fun UserGoalRegisterScreenInitialize(navController: NavController) {
                 ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxSize()
+                        .verticalScroll(scrollState)
+                        .padding(bottom = 50.dp)
                 ) {
                     Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(componentOffset))
 
                     Text(
                         //TODO USTAWIC JAKAS FAJNA CZCIONKE
@@ -89,7 +95,6 @@ fun UserGoalRegisterScreenInitialize(navController: NavController) {
                         textAlign = TextAlign.Center,
                         color = BackgroundGreen,
                         modifier = Modifier
-                            .offset(y = componentOffset)
                             .fillMaxWidth(componentWidth)
                     )
 
@@ -106,7 +111,6 @@ fun UserGoalRegisterScreenInitialize(navController: NavController) {
                                 selectedGoals + goalName
                             }
                         },
-                        offset = componentOffset,
                         width = componentWidth
                     )
 
@@ -123,7 +127,6 @@ fun UserGoalRegisterScreenInitialize(navController: NavController) {
                         ),
                         modifier = Modifier
                             .fillMaxWidth(componentWidth)
-                            .offset(y = componentOffset)
                     ) {
                         Text(
                             text = "Let's begin!", fontSize = 26.sp

@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -62,6 +64,7 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
     var height by remember { mutableStateOf("") }
     var weight by remember { mutableStateOf("") }
     var gender by remember { mutableStateOf("") }
+    val scrollState = rememberScrollState()
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -71,20 +74,22 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(BackgroundGrey),
-
+                    .background(BackgroundGrey)
                 ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxSize()
+                        .verticalScroll(scrollState)
+                        .padding(bottom = 50.dp)
                 ) {
                     //TODO na wszystkich guzikach zmienic kolor tekstu, naprawic ramki, tekst bardziej do prawej
+                    Spacer(modifier = Modifier.height(textFieldOffset))
+
                     CustomOutlinedTextField(
                         label = "Email",
                         value = email,
                         onValueChange = { email = it },
                         modifier = Modifier
-                            .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
                             .align(Alignment.CenterHorizontally)
                     )
@@ -96,7 +101,6 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
                         value = name,
                         onValueChange = { name = it },
                         modifier = Modifier
-                            .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
                             .align(Alignment.CenterHorizontally)
                     )
@@ -108,7 +112,6 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
                         value = surname,
                         onValueChange = { surname = it },
                         modifier = Modifier
-                            .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
                             .align(Alignment.CenterHorizontally)
                     )
@@ -120,7 +123,6 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
                         value = username,
                         onValueChange = { username = it },
                         modifier = Modifier
-                            .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
                             .align(Alignment.CenterHorizontally)
                     )
@@ -133,7 +135,6 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
                         onValueChange = { password = it },
                         isPassword = true,
                         modifier = Modifier
-                            .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
                             .align(Alignment.CenterHorizontally)
                     )
@@ -145,7 +146,6 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
                         value = height,
                         onValueChange = { height = it },
                         modifier = Modifier
-                            .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
                             .align(Alignment.CenterHorizontally)
                     )
@@ -158,7 +158,6 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
                         value = weight,
                         onValueChange = { weight = it },
                         modifier = Modifier
-                            .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
                             .align(Alignment.CenterHorizontally)
                     )
@@ -171,7 +170,6 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
                         value = gender,
                         onValueChange = { gender = it },
                         modifier = Modifier
-                            .offset(y = textFieldOffset)
                             .fillMaxWidth(fieldWidth)
                             .align(Alignment.CenterHorizontally)
                     )
@@ -188,7 +186,6 @@ fun UserDataRegisterScreenInitialize(navController: NavController) {
                             containerColor = LoginYellow, contentColor = Color.White
                         ), modifier = Modifier
                             .fillMaxWidth(fieldWidth)
-                            .offset(y = textFieldOffset)
                     ) {
                         Text(
                             text = "Continue", fontSize = 26.sp

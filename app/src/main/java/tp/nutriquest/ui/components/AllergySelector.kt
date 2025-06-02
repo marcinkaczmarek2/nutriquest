@@ -74,7 +74,7 @@ fun AllergySelector(
                             Image(
                                 painter = painterResource(id = option.iconRes),
                                 contentDescription = option.name,
-                                modifier = Modifier.size(50.dp)
+                                modifier = Modifier.size(40.dp)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(

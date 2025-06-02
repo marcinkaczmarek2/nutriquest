@@ -58,7 +58,7 @@ fun TaskChart(weeklyData: List<Int>) {
             Text(
                 text = "Tasks completed this",
                 color = Color.White,
-                fontSize = 16.sp,
+                fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
             )
 

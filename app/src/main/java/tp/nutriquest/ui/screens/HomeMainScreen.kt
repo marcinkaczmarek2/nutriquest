@@ -3,6 +3,7 @@ package tp.nutriquest.ui.screens
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -33,6 +34,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import tp.nutriquest.R
 import androidx.compose.ui.unit.dp
@@ -98,14 +100,15 @@ fun HomeMainScreenInitialize(navController: NavController) {
                         )
                         .background(BackgroundGrey)
                 ) {
-                    Box(
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 20.dp, vertical = 30.dp)
+                            .padding(horizontal = 20.dp, vertical = 30.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
                     ) {
                         Box(
                             modifier = Modifier
-                                .align(Alignment.CenterStart)
                                 .background(color = LoginYellow, shape = RoundedCornerShape(16.dp))
                                 .padding(8.dp)
                         ) {
@@ -123,13 +126,14 @@ fun HomeMainScreenInitialize(navController: NavController) {
                             color = BackgroundGreen,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.ExtraBold,
-                            modifier = Modifier.align(Alignment.Center),
-                            textAlign = TextAlign.Center
+                            textAlign = TextAlign.Center,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f).padding(horizontal = 8.dp)
                         )
 
                         Card(
                             modifier = Modifier
-                                .align(Alignment.CenterEnd)
                                 .height(50.dp),
                             shape = RoundedCornerShape(16.dp),
                             colors = CardDefaults.cardColors(
@@ -138,7 +142,6 @@ fun HomeMainScreenInitialize(navController: NavController) {
                             border = BorderStroke(2.dp, BackgroundGreen)
                         ) {
                             Row(
-                                //TODO wyrownac ten streak row caly bo troche krzywo
                                 modifier = Modifier
                                     .padding(horizontal = 12.dp, vertical = 10.dp),
                                 verticalAlignment = Alignment.CenterVertically
@@ -153,15 +156,15 @@ fun HomeMainScreenInitialize(navController: NavController) {
                                 Spacer(modifier = Modifier.width(8.dp))
 
                                 Text(
-                                    //TODO dodac ilosc dni streaka rzeczywistego usera
-                                    text = "69",
+                                    text = "100", // TODO: podmień na faktyczny streak
                                     color = LoginYellow,
                                     fontWeight = FontWeight.Bold,
-                                    fontSize = 30.sp
+                                    fontSize = 24.sp
                                 )
                             }
                         }
                     }
+
                     Box(
                         modifier = Modifier
                             .fillMaxSize(),
@@ -170,8 +173,8 @@ fun HomeMainScreenInitialize(navController: NavController) {
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth(0.8f)
-                                .fillMaxHeight(0.85f)
-                                .offset(y = 45.dp)
+                                .fillMaxHeight(0.9f)
+                                .padding(top = 70.dp)
                                 .clip(RoundedCornerShape(20.dp))
                                 .background(Color.White)
                                 .padding(16.dp)
