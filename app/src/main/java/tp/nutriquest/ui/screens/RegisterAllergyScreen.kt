@@ -36,6 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import tp.nutriquest.ui.components.AllergySelector
+import tp.nutriquest.ui.components.RegisterTopMenu
+import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.data.AllergyOption
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
@@ -75,7 +77,7 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                     modifier = Modifier.fillMaxWidth()
                 ) {
 
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(componentOffset))
 
                     Text(
                         //TODO dodac guzik info, uzgodnic co ma tam byc
@@ -84,7 +86,6 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                         textAlign = TextAlign.Start,
                         color = BackgroundGreen,
                         modifier = Modifier
-                            .offset(y = componentOffset)
                             .fillMaxWidth(componentWidth)
                     )
 
@@ -100,7 +101,6 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                                 selectedAllergies.value + name
                             }
                         },
-                        offset = componentOffset,
                         width = componentWidth
                     )
 
@@ -113,7 +113,6 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                         textAlign = TextAlign.Start,
                         color = BackgroundGreen,
                         modifier = Modifier
-                            .offset(y = componentOffset)
                             .fillMaxWidth(componentWidth)
                     )
 
@@ -130,7 +129,6 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                             thumbColor = LoginYellow
                         ),
                         modifier = Modifier
-                            .offset(y = componentOffset)
                             .fillMaxWidth(componentWidth)
 
                     )
@@ -140,7 +138,6 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(componentWidth)
-                            .offset(y = componentOffset)
                     ) {
                         Text(
                             text = "0",
@@ -168,52 +165,11 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
 
 
 
-                    Button(
-                        onClick = {
-                            navController.navigate("register_goal")
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = LoginYellow, contentColor = Color.White
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-                            .offset(y = componentOffset)
-                    ) {
-                        Text(
-                            text = "Continue", fontSize = 26.sp
-                        )
-                    }
+                    YellowButton(navController, "Continue", "register_goal", modifier = Modifier.fillMaxWidth(componentWidth))
                 }
             }
             //green box (upper one)
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(boxHeight)
-                    .clip(
-                        RoundedCornerShape(
-                            bottomStart = 10.dp, bottomEnd = 10.dp
-                        )
-                    )
-                    .background(BackgroundGreen)
-            ) {
-                Text(
-                    text = "FILL IN INFORMATION",
-                    modifier = Modifier
-                        .padding(top = 10.dp)
-                        .fillMaxWidth(0.8f),
-                    color = LoginYellow,
-                    textAlign = TextAlign.Center,
-                    letterSpacing = 1.sp,
-                    fontSize = 36.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    style = TextStyle(
-                        lineHeight = 44.sp
-                    )
-
-                )
-            }
+            RegisterTopMenu("FILL IN INFORMATION", navController, "register_activity")
         }
     }
 }

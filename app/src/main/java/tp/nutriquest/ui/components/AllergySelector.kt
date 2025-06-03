@@ -36,9 +36,9 @@ fun AllergySelector(
     options: List<AllergyOption>,
     selectedOptions: Set<String>,
     onOptionToggled: (String) -> Unit,
-    offset: Dp,
     width: Float
 ) {
+    val offset = 0.dp
     Column(
         modifier = Modifier
             .fillMaxWidth(width)

@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -32,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import tp.nutriquest.ui.components.CustomOutlinedTextField
+import tp.nutriquest.ui.components.RegisterTopMenu
+import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
@@ -42,7 +45,8 @@ fun RegisterDataScreenInitialize(navController: NavController) {
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
     val textFieldOffset = boxHeight + 20.dp
-    val fieldWidth = 0.8f
+    val spaceBetweenFields = 24.dp
+    val fieldWidth = 0.85f
 
     var email by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
@@ -67,7 +71,8 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxHeight()
+                        .fillMaxWidth()
                         .verticalScroll(scrollState)
                         .padding(bottom = 50.dp)
                 ) {
@@ -80,10 +85,9 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                         onValueChange = { email = it },
                         modifier = Modifier
                             .fillMaxWidth(fieldWidth)
-                            .align(Alignment.CenterHorizontally)
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(spaceBetweenFields))
 
                     CustomOutlinedTextField(
                         label = "Name",
@@ -91,10 +95,9 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                         onValueChange = { name = it },
                         modifier = Modifier
                             .fillMaxWidth(fieldWidth)
-                            .align(Alignment.CenterHorizontally)
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(spaceBetweenFields))
 
                     CustomOutlinedTextField(
                         label = "Surname",
@@ -102,10 +105,9 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                         onValueChange = { surname = it },
                         modifier = Modifier
                             .fillMaxWidth(fieldWidth)
-                            .align(Alignment.CenterHorizontally)
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(spaceBetweenFields))
 
                     CustomOutlinedTextField(
                         label = "Username",
@@ -113,10 +115,9 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                         onValueChange = { username = it },
                         modifier = Modifier
                             .fillMaxWidth(fieldWidth)
-                            .align(Alignment.CenterHorizontally)
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(spaceBetweenFields))
 
                     CustomOutlinedTextField(
                         label = "Password",
@@ -125,10 +126,9 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                         isPassword = true,
                         modifier = Modifier
                             .fillMaxWidth(fieldWidth)
-                            .align(Alignment.CenterHorizontally)
                     )
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(spaceBetweenFields))
 
                     CustomOutlinedTextField(
                         label = "Height",
@@ -136,11 +136,10 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                         onValueChange = { height = it },
                         modifier = Modifier
                             .fillMaxWidth(fieldWidth)
-                            .align(Alignment.CenterHorizontally)
                     )
 
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(spaceBetweenFields))
 
                     CustomOutlinedTextField(
                         label = "Weight",
@@ -148,11 +147,10 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                         onValueChange = { weight = it },
                         modifier = Modifier
                             .fillMaxWidth(fieldWidth)
-                            .align(Alignment.CenterHorizontally)
                     )
 
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(spaceBetweenFields))
 
                     CustomOutlinedTextField(
                         label = "Gender",
@@ -160,56 +158,19 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                         onValueChange = { gender = it },
                         modifier = Modifier
                             .fillMaxWidth(fieldWidth)
-                            .align(Alignment.CenterHorizontally)
                     )
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(spaceBetweenFields + 10.dp))
 
-                    Button(
-                        //TODO dodac onClick przeslanie tych danych a konkretnie funkcje validujaca dane, a nastepnie
-                        //TODO jezeli FALSE wyswietla sie odpowiedni komunikat
-                        //TODO jezeli TRUE zostajemy przeniesieni do odpowiedniego ekranu
-                        onClick = {
-                            navController.navigate("register_activity")
-                        }, colors = ButtonDefaults.buttonColors(
-                            containerColor = LoginYellow, contentColor = Color.White
-                        ), modifier = Modifier
-                            .fillMaxWidth(fieldWidth)
-                    ) {
-                        Text(
-                            text = "Continue", fontSize = 26.sp
-                        )
-                    }
+                    YellowButton(navController, "Continue", "register_activity", modifier = Modifier.fillMaxWidth(fieldWidth))
                 }
             }
             //green box (upper one)
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(boxHeight)
-                    .clip(
-                        RoundedCornerShape(
-                            bottomStart = 10.dp, bottomEnd = 10.dp
-                        )
-                    )
-                    .background(BackgroundGreen)
-            ) {
-                Text(
-                    text = "CREATE YOUR ACCOUNT",
-                    modifier = Modifier
-                        .padding(top = 10.dp)
-                        .fillMaxWidth(),
-                    color = LoginYellow,
-                    textAlign = TextAlign.Center,
-                    letterSpacing = 1.sp,
-                    fontSize = 36.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    style = TextStyle(
-                        lineHeight = 44.sp
-                    )
-                )
-            }
+            RegisterTopMenu("CREATE YOUR ACCOUNT", navController, "login")
         }
     }
 }
+
+
+
+

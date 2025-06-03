@@ -94,21 +94,7 @@ fun LoginPanel(navController: NavController) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            Button(
-                onClick = {
-                    navController.navigate("home")
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = LoginYellow,
-                    contentColor = Color.White
-                ),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = "Login",
-                    fontSize = 26.sp
-                )
-            }
+            YellowButton(navController, "Login", "home", modifier = Modifier.fillMaxWidth())
 
             Spacer(modifier = Modifier.height(12.dp))
 

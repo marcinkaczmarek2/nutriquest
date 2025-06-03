@@ -33,6 +33,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import tp.nutriquest.ui.components.GoalSelector
+import tp.nutriquest.ui.components.RegisterTopMenu
+import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.data.Goal
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
@@ -105,51 +107,12 @@ fun RegisterGoalScreenInitialize(navController: NavController) {
 
 
 
-                    Button(
-                        onClick = {
-                            navController.navigate("home")
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = LoginYellow, contentColor = Color.White
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-                    ) {
-                        Text(
-                            text = "Let's begin!", fontSize = 26.sp
-                        )
-                    }
+                    YellowButton(navController, "Let's begin!", "home", modifier = Modifier.fillMaxWidth(componentWidth))
                 }
             }
 
             //green box (upper one)
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(boxHeight)
-                    .clip(
-                        RoundedCornerShape(
-                            bottomStart = 10.dp, bottomEnd = 10.dp
-                        )
-                    )
-                    .background(BackgroundGreen)
-            ) {
-                Text(
-                    text = "CHOOSE YOUR GOAL",
-                    modifier = Modifier
-                        .padding(top = 10.dp)
-                        .fillMaxWidth(0.8f),
-                    color = LoginYellow,
-                    textAlign = TextAlign.Center,
-                    letterSpacing = 1.sp,
-                    fontSize = 36.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    style = TextStyle(
-                        lineHeight = 44.sp
-                    )
-                )
-            }
+            RegisterTopMenu("CHOOSE YOUR GOAL", navController, "register_allergy")
         }
     }
 }

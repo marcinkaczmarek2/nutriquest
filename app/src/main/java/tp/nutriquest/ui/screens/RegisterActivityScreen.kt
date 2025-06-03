@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import tp.nutriquest.ui.components.DietSelector
+import tp.nutriquest.ui.components.RegisterTopMenu
+import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
@@ -64,6 +66,7 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.fillMaxWidth()
                 ) {
+                    Spacer(modifier = Modifier.height(componentOffset))
 
                     Text(
                         //TODO USTAWIC JAKAS FAJNA CZCIONKE
@@ -72,7 +75,6 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                         textAlign = TextAlign.Start,
                         color = BackgroundGreen,
                         modifier = Modifier
-                            .offset(y = componentOffset)
                             .fillMaxWidth(componentWidth)
                     )
 
@@ -89,7 +91,6 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                             thumbColor = LoginYellow
                         ),
                         modifier = Modifier
-                            .offset(y = componentOffset)
                             .fillMaxWidth(componentWidth)
 
                     )
@@ -99,7 +100,6 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(componentWidth)
-                            .offset(y = componentOffset)
                     ) {
                         Text(
                             text = "0",
@@ -132,7 +132,6 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                         textAlign = TextAlign.Start,
                         color = BackgroundGreen,
                         modifier = Modifier
-                            .offset(y = componentOffset)
                             .fillMaxWidth(componentWidth)
                     )
 
@@ -142,7 +141,6 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                     DietSelector(
                         selectedOption = selectedDiet,
                         onOptionSelected = { selectedDiet = it },
-                        offset = componentOffset,
                         width = componentWidth
                     )
 
@@ -155,7 +153,6 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                         textAlign = TextAlign.Start,
                         color = BackgroundGreen,
                         modifier = Modifier
-                            .offset(y = componentOffset)
                             .fillMaxWidth(componentWidth)
                     )
 
@@ -172,7 +169,6 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                             thumbColor = LoginYellow
                         ),
                         modifier = Modifier
-                            .offset(y = componentOffset)
                             .fillMaxWidth(componentWidth)
 
                     )
@@ -182,7 +178,6 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth(componentWidth)
-                            .offset(y = componentOffset)
                     ) {
                         Text(
                             text = "1",
@@ -208,56 +203,11 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-
-
-                    Button(
-                        onClick = {
-                            navController.navigate("register_allergy")
-                        },
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = LoginYellow,
-                            contentColor = Color.White
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-                            .offset(y = componentOffset)
-                    ) {
-                        Text(
-                            text = "Continue",
-                            fontSize = 26.sp
-                        )
-                    }
+                    YellowButton(navController, "Continue", "register_allergy", modifier = Modifier.fillMaxWidth(componentWidth))
                 }
             }
             //green box (upper one)
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(boxHeight)
-                    .clip(
-                        RoundedCornerShape(
-                            bottomStart = 10.dp,
-                            bottomEnd = 10.dp
-                        )
-                    )
-                    .background(BackgroundGreen)
-            ) {
-                Text(
-                    text = "FILL IN INFORMATION",
-                    modifier = Modifier
-                        .padding(top = 10.dp)
-                        .fillMaxWidth(0.8f),
-                    color = LoginYellow,
-                    textAlign = TextAlign.Center,
-                    letterSpacing = 1.sp,
-                    fontSize = 36.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    style = TextStyle(
-                        lineHeight = 44.sp
-                    )
-                )
-            }
+            RegisterTopMenu("FILL IN INFORMATION", navController, "register_data")
         }
     }
 }

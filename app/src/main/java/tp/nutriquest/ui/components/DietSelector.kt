@@ -28,9 +28,9 @@ fun DietSelector(
     options: List<String> = listOf("Regular", "Vegetarian", "Vegan"),
     selectedOption: String,
     onOptionSelected: (String) -> Unit,
-    offset: Dp,
     width: Float
 ) {
+    val offset = 0.dp
     Column(
         modifier = Modifier
             .fillMaxWidth(width)
