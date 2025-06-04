@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import tp.nutriquest.ui.components.AllergySelector
+import tp.nutriquest.ui.components.CustomSlider
 import tp.nutriquest.ui.components.RegisterTopMenu
 import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.data.AllergyOption
@@ -48,7 +49,7 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
-    val componentOffset = boxHeight + 20.dp
+    val componentOffset = boxHeight + 35.dp
     val componentWidth = 0.8f
 
     val allergyOptions = listOf(
@@ -60,7 +61,7 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
         AllergyOption("Eggs", R.drawable.eggs_icon)
     )
     val selectedAllergies = remember { mutableStateOf(setOf<String>()) }
-    var waterPerDay by remember { mutableFloatStateOf(0f) }
+    val waterPerDay = remember { mutableFloatStateOf(0f) }
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -89,7 +90,7 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                             .fillMaxWidth(componentWidth)
                     )
 
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
 
                     AllergySelector(
                         options = allergyOptions,
@@ -104,66 +105,11 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                         width = componentWidth
                     )
 
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Spacer(modifier = Modifier.height(70.dp))
 
-                    Text(
-                        //TODO USTAWIC JAKAS FAJNA CZCIONKE
-                        text = "Liters of water per day: ${waterPerDay.toInt()}",
-                        fontSize = 18.sp,
-                        textAlign = TextAlign.Start,
-                        color = BackgroundGreen,
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-                    )
+                    CustomSlider(waterPerDay, componentWidth, "2", 0f, 4f, "Liters of water", "(per day)")
 
-                    Spacer(modifier = Modifier.height(2.dp))
-
-                    Slider(
-                        value = waterPerDay,
-                        onValueChange = { waterPerDay = it },
-                        valueRange = 0f..4f,
-                        steps = 0,
-                        colors = SliderDefaults.colors(
-                            activeTrackColor = BackgroundGreen,
-                            inactiveTrackColor = Color.White,
-                            thumbColor = LoginYellow
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-
-                    )
-
-                    Spacer(modifier = Modifier.height(2.dp))
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-                    ) {
-                        Text(
-                            text = "0",
-                            color = BackgroundGreen,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.Start
-                        )
-
-                        Text(
-                            text = "2",
-                            color = BackgroundGreen,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.Center
-                        )
-
-                        Text(
-                            text = "4",
-                            color = BackgroundGreen,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.End
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(50.dp))
-
-
+                    Spacer(modifier = Modifier.height(90.dp))
 
                     YellowButton(navController, "Continue", "register_goal", modifier = Modifier.fillMaxWidth(componentWidth))
                 }

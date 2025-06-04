@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,8 +19,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -32,23 +36,55 @@ import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
 fun LoginScreenInitialize(navController: NavController) {
-    val scrollState = rememberScrollState()
+    val configuration = LocalConfiguration.current
+    val screenHeightDp = configuration.screenHeightDp.dp
+    val screenWidthDp = configuration.screenWidthDp.dp
 
-    Column(
+    val density = LocalDensity.current
+
+    val screenHeightPx = with(density) { screenHeightDp.toPx() }
+    val screenWidthPx = with(density) { screenWidthDp.toPx() }
+
+    val loginPanelOffsetY = with(density) {
+        (screenHeightPx * 0.7f).toDp() - 600.dp // połowa wysokości LoginPanelu
+    }
+
+    // Responsywne rozmiary logo i fontów
+    val logoWidth = with(density) { (screenWidthPx * 0.55f).toDp() }
+    val logoHeight = logoWidth * 0.75f
+
+    val titleFontSize = (screenWidthPx * 0.055f).sp
+    val subtitleFontSize = (screenWidthPx * 0.025f).sp
+
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(scrollState)
             .background(BackgroundGreen)
     ) {
+        // Background
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(BackgroundGrey)
+                .height(with(density) { (screenHeightPx * 0.7f).toDp() })
                 .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
-                .padding(vertical = 24.dp),
-            contentAlignment = Alignment.Center
+                .background(BackgroundGrey)
+        )
+
+        // Content
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 48.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+
+                Spacer(modifier = Modifier.height(50.dp))
+
                 Box(
                     modifier = Modifier
                         .background(
@@ -57,45 +93,53 @@ fun LoginScreenInitialize(navController: NavController) {
                         )
                         .padding(12.dp)
                 ) {
+
                     Image(
                         painter = painterResource(R.drawable.nutriquest_logo),
                         contentDescription = "App logo",
                         modifier = Modifier
-                            .height(120.dp)
-                            .width(160.dp)
+                            .height(logoHeight)
+                            .width(logoWidth)
                     )
                 }
 
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
                     text = "NUTRIQUEST",
                     color = BackgroundGreen,
-                    fontSize = 30.sp,
-                    fontWeight = FontWeight.ExtraBold
+                    fontSize = titleFontSize,
+                    fontWeight = FontWeight.ExtraBold,
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
 
                 Text(
                     text = "YOUR PERSONAL",
                     color = BackgroundGreen,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium
+                    fontSize = subtitleFontSize,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
 
                 Text(
                     text = "NUTRITION CONTROLLER",
                     color = BackgroundGreen,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium
+                    fontSize = subtitleFontSize,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier.padding(horizontal = 20.dp)
                 )
             }
+
+            Spacer(modifier = Modifier.height(loginPanelOffsetY))
+
+            LoginPanel(navController = navController)
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        LoginPanel(navController = navController)
     }
 }
+
+
+
+
 
 
 

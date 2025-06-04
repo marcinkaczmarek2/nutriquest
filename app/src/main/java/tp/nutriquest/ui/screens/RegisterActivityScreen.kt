@@ -17,6 +17,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableFloatState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -34,22 +35,24 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import tp.nutriquest.ui.components.CustomSlider
 import tp.nutriquest.ui.components.DietSelector
 import tp.nutriquest.ui.components.RegisterTopMenu
 import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
+import kotlin.math.max
 
 @Composable
 fun RegisterActivityScreenInitialize(navController: NavController) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
-    val componentOffset = boxHeight + 20.dp
+    val componentOffset = boxHeight + 35.dp
     val componentWidth = 0.8f
-    var activityHours by remember { mutableFloatStateOf(0f) }
-    var mealsPerDay by remember { mutableFloatStateOf(0f) }
+    val activityHours = remember { mutableFloatStateOf(0f) }
+    val mealsPerDay = remember { mutableFloatStateOf(0f) }
     var selectedDiet by remember { mutableStateOf("Regular") }
     Box(
         modifier = Modifier.fillMaxSize()
@@ -68,62 +71,9 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                 ) {
                     Spacer(modifier = Modifier.height(componentOffset))
 
-                    Text(
-                        //TODO USTAWIC JAKAS FAJNA CZCIONKE
-                        text = "Physical Activity: ${activityHours.toInt()} (hours per week)",
-                        fontSize = 18.sp,
-                        textAlign = TextAlign.Start,
-                        color = BackgroundGreen,
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-                    )
+                    CustomSlider(activityHours, componentWidth, "7", 0f, 14f, "Physical Activity", "(hours per week)")
 
-                    Spacer(modifier = Modifier.height(2.dp))
-
-                    Slider(
-                        value = activityHours,
-                        onValueChange = { activityHours = it },
-                        valueRange = 0f..14f,
-                        steps = 0,
-                        colors = SliderDefaults.colors(
-                            activeTrackColor = BackgroundGreen,
-                            inactiveTrackColor = Color.White,
-                            thumbColor = LoginYellow
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-
-                    )
-
-                    Spacer(modifier = Modifier.height(2.dp))
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-                    ) {
-                        Text(
-                            text = "0",
-                            color = BackgroundGreen,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.Start
-                        )
-
-                        Text(
-                            text = "7",
-                            color = BackgroundGreen,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.Center
-                        )
-
-                        Text(
-                            text = "14",
-                            color = BackgroundGreen,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.End
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
 
                     Text(
                         //TODO USTAWIC JAKAS FAJNA CZCIONKE
@@ -144,64 +94,11 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                         width = componentWidth
                     )
 
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(35.dp))
 
-                    Text(
-                        //TODO USTAWIC JAKAS FAJNA CZCIONKE
-                        text = "Meals per day: ${mealsPerDay.toInt()}",
-                        fontSize = 18.sp,
-                        textAlign = TextAlign.Start,
-                        color = BackgroundGreen,
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-                    )
+                    CustomSlider(mealsPerDay, componentWidth, "4", 0f, 8f, "Meals per day", "")
 
-                    Spacer(modifier = Modifier.height(2.dp))
-
-                    Slider(
-                        value = mealsPerDay,
-                        onValueChange = { mealsPerDay = it },
-                        valueRange = 0f..8f,
-                        steps = 0,
-                        colors = SliderDefaults.colors(
-                            activeTrackColor = BackgroundGreen,
-                            inactiveTrackColor = Color.White,
-                            thumbColor = LoginYellow
-                        ),
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-
-                    )
-
-                    Spacer(modifier = Modifier.height(2.dp))
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(componentWidth)
-                    ) {
-                        Text(
-                            text = "1",
-                            color = BackgroundGreen,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.Start
-                        )
-
-                        Text(
-                            text = "4",
-                            color = BackgroundGreen,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.Center
-                        )
-
-                        Text(
-                            text = "8",
-                            color = BackgroundGreen,
-                            modifier = Modifier.weight(1f),
-                            textAlign = TextAlign.End
-                        )
-                    }
-
-                    Spacer(modifier = Modifier.height(20.dp))
+                    Spacer(modifier = Modifier.height(40.dp))
 
                     YellowButton(navController, "Continue", "register_allergy", modifier = Modifier.fillMaxWidth(componentWidth))
                 }

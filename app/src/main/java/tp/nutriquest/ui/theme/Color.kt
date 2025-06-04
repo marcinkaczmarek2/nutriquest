@@ -18,3 +18,8 @@ val LoginYellow = Color(0xFFFFD630)
 
 val QuestGreen = Color(0xFF15A954)
 val GoalGreen = Color(0xFFC4E1D0)
+
+val LoginFieldGreen = Color(0xFFB5C9BD)
+val LoginTextGreen = Color(0xFF0B6230)
+
+val RegisterFieldGreen = Color(0xFF83A692)

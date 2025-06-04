@@ -76,7 +76,6 @@ fun RegisterDataScreenInitialize(navController: NavController) {
                         .verticalScroll(scrollState)
                         .padding(bottom = 50.dp)
                 ) {
-                    //TODO na wszystkich guzikach zmienic kolor tekstu, naprawic ramki, tekst bardziej do prawej
                     Spacer(modifier = Modifier.height(textFieldOffset))
 
                     CustomOutlinedTextField(

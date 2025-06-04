@@ -81,12 +81,14 @@ fun RegisterGoalScreenInitialize(navController: NavController) {
                         //TODO USTAWIC JAKAS FAJNA CZCIONKE
                         text = "What do you want to achieve?",
                         fontSize = 18.sp,
-                        textAlign = TextAlign.Center,
+                        textAlign = TextAlign.Start,
                         color = BackgroundGreen,
                         modifier = Modifier
                             .fillMaxWidth(componentWidth)
                     )
 
+
+                    Spacer(modifier = Modifier.height(10.dp))
 
 
                     GoalSelector(

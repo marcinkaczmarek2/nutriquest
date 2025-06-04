@@ -40,15 +40,16 @@ fun DietSelector(
         options.forEach { option ->
             val isSelected = option == selectedOption
             Card(
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-                    .clickable { onOptionSelected(option) },
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = if (isSelected) LoginYellow else BackgroundGreen
                 ),
-                border = if (isSelected) BorderStroke(2.dp, Color(0xFF388E3C)) else null
+                border = if (isSelected) BorderStroke(2.dp, Color(0xFF388E3C)) else null,
+                modifier = Modifier
+                    .height(50.dp)
+                    .fillMaxWidth()
+                    .clickable { onOptionSelected(option) },
+
             ) {
                 Box(
                     modifier = Modifier

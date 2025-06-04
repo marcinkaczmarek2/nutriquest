@@ -46,7 +46,7 @@ fun GoalSelector(
         options.forEach { option ->
             val isSelected = selectedOptions.contains(option.name)
 
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(2.dp))
 
             Card(
                 modifier = Modifier
