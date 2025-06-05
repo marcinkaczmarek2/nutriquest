@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -22,8 +21,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -46,14 +47,13 @@ fun LoginScreenInitialize(navController: NavController) {
     val screenWidthPx = with(density) { screenWidthDp.toPx() }
 
     val loginPanelOffsetY = with(density) {
-        (screenHeightPx * 0.7f).toDp() - 600.dp // połowa wysokości LoginPanelu
+        (screenHeightPx * 0.7f).toDp() - 600.dp
     }
 
-    // Responsywne rozmiary logo i fontów
     val logoWidth = with(density) { (screenWidthPx * 0.55f).toDp() }
     val logoHeight = logoWidth * 0.75f
 
-    val titleFontSize = (screenWidthPx * 0.055f).sp
+    val titleFontSize = (screenWidthPx * 0.04f).sp
     val subtitleFontSize = (screenWidthPx * 0.025f).sp
 
     Box(
@@ -61,7 +61,6 @@ fun LoginScreenInitialize(navController: NavController) {
             .fillMaxSize()
             .background(BackgroundGreen)
     ) {
-        // Background
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -70,7 +69,6 @@ fun LoginScreenInitialize(navController: NavController) {
                 .background(BackgroundGrey)
         )
 
-        // Content
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -106,18 +104,31 @@ fun LoginScreenInitialize(navController: NavController) {
                 Spacer(modifier = Modifier.height(24.dp))
 
                 Text(
-                    text = "NUTRIQUEST",
+                    text = buildAnnotatedString {
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                            append("N")
+                        }
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) {
+                            append("UTRI")
+                        }
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                            append("Q")
+                        }
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) {
+                            append("UEST")
+                        }
+                    },
                     color = BackgroundGreen,
                     fontSize = titleFontSize,
-                    fontWeight = FontWeight.ExtraBold,
                     modifier = Modifier.padding(horizontal = 20.dp)
                 )
+
 
                 Text(
                     text = "YOUR PERSONAL",
                     color = BackgroundGreen,
                     fontSize = subtitleFontSize,
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = FontWeight.Normal,
                     modifier = Modifier.padding(horizontal = 20.dp)
                 )
 
@@ -125,7 +136,7 @@ fun LoginScreenInitialize(navController: NavController) {
                     text = "NUTRITION CONTROLLER",
                     color = BackgroundGreen,
                     fontSize = subtitleFontSize,
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = FontWeight.Normal,
                     modifier = Modifier.padding(horizontal = 20.dp)
                 )
             }

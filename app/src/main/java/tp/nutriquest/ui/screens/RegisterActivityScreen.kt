@@ -76,10 +76,10 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
                     Spacer(modifier = Modifier.height(30.dp))
 
                     Text(
-                        //TODO USTAWIC JAKAS FAJNA CZCIONKE
                         text = "Diet",
-                        fontSize = 18.sp,
+                        fontSize = 16.sp,
                         textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold,
                         color = BackgroundGreen,
                         modifier = Modifier
                             .fillMaxWidth(componentWidth)

@@ -83,14 +83,15 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                     Text(
                         //TODO dodac guzik info, uzgodnic co ma tam byc
                         text = "Allergies",
-                        fontSize = 18.sp,
+                        fontSize = 16.sp,
                         textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold,
                         color = BackgroundGreen,
                         modifier = Modifier
                             .fillMaxWidth(componentWidth)
                     )
 
-                    Spacer(modifier = Modifier.height(10.dp))
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     AllergySelector(
                         options = allergyOptions,

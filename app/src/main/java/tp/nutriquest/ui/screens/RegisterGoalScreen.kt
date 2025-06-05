@@ -78,10 +78,10 @@ fun RegisterGoalScreenInitialize(navController: NavController) {
                     Spacer(modifier = Modifier.height(componentOffset))
 
                     Text(
-                        //TODO USTAWIC JAKAS FAJNA CZCIONKE
                         text = "What do you want to achieve?",
-                        fontSize = 18.sp,
+                        fontSize = 16.sp,
                         textAlign = TextAlign.Start,
+                        fontWeight = FontWeight.Bold,
                         color = BackgroundGreen,
                         modifier = Modifier
                             .fillMaxWidth(componentWidth)

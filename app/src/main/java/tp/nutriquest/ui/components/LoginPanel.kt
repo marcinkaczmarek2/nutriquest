@@ -114,12 +114,12 @@ fun LoginPanel(navController: NavController) {
             ) {
                 Text(
                     text = "Don't have an account?",
-                    fontSize = 12.sp
+                    fontSize = 11.sp
                 )
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
                     text = "Create an account",
-                    fontSize = 12.sp,
+                    fontSize = 11.sp,
                     color = LoginTextGreen,
                     modifier = Modifier.clickable {
                         navController.navigate("register_data")

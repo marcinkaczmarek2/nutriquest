@@ -10,6 +10,13 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
+import tp.nutriquest.R
+import androidx.compose.material3.Typography
+import androidx.compose.ui.text.TextStyle
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -50,9 +57,27 @@ fun NutriquestTheme(
         else -> LightColorScheme
     }
 
+
+    val montserratFontFamily = FontFamily(
+        Font(R.font.montserrat_regular, FontWeight.Normal),
+        Font(R.font.montserrat_medium, FontWeight.Medium),
+        Font(R.font.montserrat_semi_bold, FontWeight.SemiBold),
+        Font(R.font.montserrat_bold, FontWeight.Bold),
+        Font(R.font.montserrat_extra_bold, FontWeight.ExtraBold)
+    )
+
+    val customTypography = Typography(
+        bodyLarge = TextStyle(
+            fontFamily = montserratFontFamily,
+            fontWeight = FontWeight.Normal,
+            fontSize = 16.sp
+        ),
+    )
+
+
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography  = customTypography,
         content = content
     )
 }
