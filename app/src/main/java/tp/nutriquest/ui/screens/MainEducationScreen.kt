@@ -39,7 +39,6 @@ fun MainEducationScreenInitialize(navController: NavController) {
     val lowerMenuOffset = boxHeight + 20.dp
     val scrollState = rememberScrollState()
 
-    //TODO kiedys zrobic wczytywanie celow z pliku dla danego usera
     var goals = listOf(
         Goal("Improve overall wellbeing", R.drawable.wellbeing_icon),
         Goal("Improve appearance", R.drawable.appearance_icon),

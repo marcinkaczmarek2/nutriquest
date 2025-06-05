@@ -85,7 +85,6 @@ fun RegisterGoalScreenInitialize(navController: NavController) {
 
 
                     GoalSelector(
-                        //TODO przekazywac jakos wybrane goale
                         options = goalOptions,
                         selectedOptions = selectedGoals,
                         onOptionSelected = { goalName ->

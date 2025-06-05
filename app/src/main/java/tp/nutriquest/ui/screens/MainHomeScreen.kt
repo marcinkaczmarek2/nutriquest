@@ -23,11 +23,15 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import tp.nutriquest.R
 import tp.nutriquest.ui.components.LowerNavigationMenu
 import tp.nutriquest.ui.components.MainScreenContentColumnModifier
 import tp.nutriquest.ui.components.QuestCompose
 import tp.nutriquest.ui.components.TopLogoAndStats
+import tp.nutriquest.ui.components.WeeklyQuestCompose
+import tp.nutriquest.ui.data.Progress
 import tp.nutriquest.ui.data.Quest
+import tp.nutriquest.ui.data.WeeklyQuest
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 
@@ -67,6 +71,40 @@ fun MainHomeScreenInitialize(navController: NavController) {
                 mutableStateOf(false)
             ),
         )
+    }
+
+
+    val weeklyQuests = remember {
+        listOf(
+            mutableStateOf(
+                WeeklyQuest(
+                    title = "Eat vegetables",
+                    information = "Eat vegetables at least 7 times this week. Boosts fiber and supports digestion. Keep it up all week!",
+                    progress = mutableStateOf(Progress(currentValue = 0, maxValue = 7, iconId = R.drawable.vegetables_icon)),
+                    isChecked = mutableStateOf(false)
+                )
+            ),
+
+            mutableStateOf(
+                WeeklyQuest(
+                    title = "New healthy foods",
+                    information = "Try introducing a new fruit, vegetable, grain, or nut daily. This improves nutrient diversity and helps you discover new favorites.",
+                    progress = mutableStateOf(Progress(currentValue = 0, maxValue = 7, iconId = R.drawable.healthy_food_icon)),
+                    isChecked = mutableStateOf(false)
+                )
+            ),
+
+            mutableStateOf(
+                WeeklyQuest(
+                    title = "Home-cooked meals",
+                    information = "Try to make at home-cooked meals at least 5 times this week. Home cooking gives you full control over ingredients and portion sizes — a key step toward better nutrition.",
+                    progress = mutableStateOf(Progress(currentValue = 0, maxValue = 5, iconId = R.drawable.cooking_icon)),
+                    isChecked = mutableStateOf(false)
+                )
+            ),
+
+        )
+
     }
 
 
@@ -136,6 +174,30 @@ fun MainHomeScreenInitialize(navController: NavController) {
 
                         QuestCompose(quests[4])
 
+                        Spacer(modifier = Modifier.height(25.dp))
+
+
+                        Text(
+                            text = "WEEKLY QUESTS",
+                            fontSize = 26.sp,
+                            color = BackgroundGreen,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        Spacer(modifier = Modifier.height(10.dp))
+
+
+                        WeeklyQuestCompose(quest = weeklyQuests[0].value)
+
+                        Spacer(modifier = Modifier.height(25.dp))
+
+                        WeeklyQuestCompose(quest = weeklyQuests[1].value)
+
+                        Spacer(modifier = Modifier.height(25.dp))
+
+                        WeeklyQuestCompose(quest = weeklyQuests[2].value)
                     }
                 }
             }

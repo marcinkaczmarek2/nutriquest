@@ -50,17 +50,18 @@ fun MainStatsScreenInitialize(navController: NavController) {
     var achievements = listOf(
         Achievement(100, "DAY STREAK", R.drawable.streak_icon),
         Achievement(4, "WEEKS OF HYDRATION", R.drawable.hydration_icon),
-        Achievement(50, "NUTRI-TIPS READ", R.drawable.openbook_icon),
+        Achievement(250, "NUTRI-TIPS READ", R.drawable.openbook_icon),
     )
 
     val progresses = listOf(
         Progress(100, 200, R.drawable.streak_icon),
         Progress(4, 5, R.drawable.hydration_icon),
-        Progress(50, 75, R.drawable.openbook_icon),
+        Progress(250, 400, R.drawable.openbook_icon),
     )
 
 
-    val weeklyData = listOf(1, 2, 0, 3, 1, 2, 1)
+
+    val weeklyData = listOf(4, 1, 2, 5, 1, 3, 2)
 
     Box(modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -174,7 +175,29 @@ fun MainStatsScreenInitialize(navController: NavController) {
 
                         Spacer(modifier = Modifier.height(30.dp))
 
-                        //TODO dodac wykresy dla month i year oraz dzialac na prawdziwych danych
+                        Spacer(modifier = Modifier.height(30.dp))
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.CenterHorizontally),
+                            colors = CardDefaults.cardColors(
+                                containerColor = QuestGreen
+                            ),
+                            shape = RoundedCornerShape(12.dp)
+                        ) {
+                            Text(
+                                text = "TASKS COMPLETED THIS WEEK",
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(vertical = 6.dp),
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(20.dp))
+
                         TaskChart(weeklyData = weeklyData)
                     }
                 }

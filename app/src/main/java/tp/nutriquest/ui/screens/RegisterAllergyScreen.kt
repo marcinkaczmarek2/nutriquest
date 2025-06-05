@@ -67,7 +67,6 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
                     Spacer(modifier = Modifier.height(componentOffset))
 
                     Text(
-                        //TODO dodac guzik info, uzgodnic co ma tam byc
                         text = "Allergies",
                         fontSize = 16.sp,
                         textAlign = TextAlign.Start,
