@@ -4,8 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,11 +21,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import tp.nutriquest.ui.components.RegisterHeaderText
-import tp.nutriquest.ui.theme.BackgroundGreen
-import tp.nutriquest.ui.theme.LoginYellow
 import tp.nutriquest.R
-import tp.nutriquest.ui.theme.BackgroundGrey
+import tp.nutriquest.ui.theme.BackgroundGreen
 
 @Composable
 fun RegisterTopMenu(headerText: String, navController: NavController, navigation: String) {
@@ -55,11 +50,11 @@ fun RegisterTopMenu(headerText: String, navController: NavController, navigation
             contentAlignment = Alignment.TopStart
         ) {
             Image(
-                painter = painterResource(id = R.drawable.back_icon),
+                painter = painterResource(id = R.drawable.back_test_icon),
                 contentDescription = "go back",
                 colorFilter = ColorFilter.tint(Color.White),
                 modifier = Modifier
-                    .size(30.dp)
+                    .size(40.dp)
                     .clickable { navController.navigate(navigation) }
             )
         }

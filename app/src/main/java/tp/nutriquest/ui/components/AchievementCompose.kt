@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.sp
 import tp.nutriquest.ui.data.Achievement
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.LoginYellow
-import tp.nutriquest.ui.theme.QuestGreen
 
 @Composable
 fun AchievementCompose(

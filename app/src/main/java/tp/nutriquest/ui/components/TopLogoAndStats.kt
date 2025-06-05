@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -35,7 +36,7 @@ fun TopLogoAndStats(){
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 30.dp),
+            .padding(start = 20.dp, end = 20.dp, top = 30.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -43,30 +44,32 @@ fun TopLogoAndStats(){
             modifier = Modifier
                 .background(color = LoginYellow, shape = RoundedCornerShape(16.dp))
                 .padding(8.dp)
+                .height(50.dp)
+                .width(80.dp)
         ) {
             Image(
                 painter = painterResource(R.drawable.nutriquest_logo),
                 contentDescription = "App logo",
                 modifier = Modifier
-                    .height(50.dp)
-                    .width(60.dp)
+                    .fillMaxSize()
             )
         }
 
         Text(
             text = "NUTRITION QUEST",
             color = BackgroundGreen,
-            fontSize = 16.sp,
+            fontSize = 24.sp,
             fontWeight = FontWeight.ExtraBold,
             textAlign = TextAlign.Center,
-            maxLines = 1,
+            maxLines = 2,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f).padding(horizontal = 8.dp)
         )
 
         Card(
             modifier = Modifier
-                .height(50.dp),
+                .height(66.dp)
+                .width(96.dp),
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(
                 containerColor = BackgroundGreen
@@ -75,7 +78,7 @@ fun TopLogoAndStats(){
         ) {
             Row(
                 modifier = Modifier
-                    .padding(horizontal = 12.dp, vertical = 10.dp),
+                    .padding(start = 8.dp, top = 18.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
@@ -88,10 +91,10 @@ fun TopLogoAndStats(){
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "100", // TODO: podmień na faktyczny streak
+                    text = "100", // TODO: podmienić na faktyczny streak
                     color = LoginYellow,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp
+                    fontSize = 22.sp
                 )
             }
         }

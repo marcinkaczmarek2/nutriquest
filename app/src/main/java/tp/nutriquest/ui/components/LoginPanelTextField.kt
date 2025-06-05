@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -25,8 +24,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import tp.nutriquest.ui.theme.LoginFieldGreen
 import tp.nutriquest.ui.theme.LoginTextGreen
-import tp.nutriquest.ui.theme.QuestGreen
-import tp.nutriquest.ui.theme.RegisterFieldGreen
 
 @Composable
 fun LoginPanelTextField(
@@ -78,7 +75,7 @@ fun LoginPanelTextField(
                     if (value.isEmpty()) {
                         Text(
                             text = label,
-                            color = RegisterFieldGreen.copy(alpha = 0.9f)
+                            color = LoginTextGreen
                         )
                     }
                     innerTextField()

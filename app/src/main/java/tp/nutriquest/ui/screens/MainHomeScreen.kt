@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -46,7 +47,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
                 mutableStateOf(false)
             ),
             Quest(
-                "2 cubes of dark chocolate",
+                "2 dark chocolate cubes",
                 "Flavonoids can enhance blood flow to your brain, boosting mental clarity and reducing stress.",
                 mutableStateOf(false)
             ),
@@ -56,8 +57,13 @@ fun MainHomeScreenInitialize(navController: NavController) {
                 mutableStateOf(false)
             ),
             Quest(
-                "2 liters of water",
-                "Staying hydrated improves focus and overall mood.",
+                "handful of nuts",
+                "Rich in healthy fats and magnesium, they support brain health and satiety.",
+                mutableStateOf(false)
+            ),
+            Quest(
+                "a glass of green tea",
+                "Contains L-theanine and caffeine — a combo that improves alertness without jitters.",
                 mutableStateOf(false)
             ),
         )
@@ -105,6 +111,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
                             text = "TODAY'S QUESTS",
                             fontSize = 26.sp,
                             color = BackgroundGreen,
+                            fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.fillMaxWidth()
                         )
@@ -124,6 +131,10 @@ fun MainHomeScreenInitialize(navController: NavController) {
                         Spacer(modifier = Modifier.height(25.dp))
 
                         QuestCompose(quests[3])
+
+                        Spacer(modifier = Modifier.height(25.dp))
+
+                        QuestCompose(quests[4])
 
                     }
                 }

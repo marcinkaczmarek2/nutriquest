@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import tp.nutriquest.ui.data.Goal
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.LoginYellow
@@ -45,7 +46,8 @@ fun GoalCard(goal: Goal)
             Text(
                 text = goal.name,
                 color = Color.White,
-                fontWeight = FontWeight.Normal
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp
             )
 
 

@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -103,6 +104,7 @@ fun MainStatsScreenInitialize(navController: NavController) {
                             text = "HOW YOU'RE DOING:",
                             fontSize = 26.sp,
                             color = BackgroundGreen,
+                            fontWeight = FontWeight.Bold,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.fillMaxWidth()
                         )
@@ -122,6 +124,7 @@ fun MainStatsScreenInitialize(navController: NavController) {
                                     .fillMaxWidth()
                                     .padding(vertical = 6.dp),
                                 textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
                                 color = Color.White
                             )
                         }
@@ -153,18 +156,19 @@ fun MainStatsScreenInitialize(navController: NavController) {
                                     .fillMaxWidth()
                                     .padding(vertical = 6.dp),
                                 textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
                                 color = Color.White
                             )
                         }
-                        Spacer(modifier = Modifier.height(10.dp))
+                        Spacer(modifier = Modifier.height(20.dp))
 
                         CheckpointProgressBar(progresses[0])
 
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(25.dp))
 
                         CheckpointProgressBar(progresses[1])
 
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(25.dp))
 
                         CheckpointProgressBar(progresses[2])
 

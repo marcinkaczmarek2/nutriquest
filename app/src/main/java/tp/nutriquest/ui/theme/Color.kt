@@ -23,3 +23,4 @@ val LoginFieldGreen = Color(0xFFB5C9BD)
 val LoginTextGreen = Color(0xFF0B6230)
 
 val RegisterFieldGreen = Color(0xFF83A692)
+val QuestCheckedTextGreen = Color(0xFF09582B)

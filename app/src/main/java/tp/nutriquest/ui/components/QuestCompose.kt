@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -25,13 +26,16 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tp.nutriquest.R
 import tp.nutriquest.ui.data.Quest
 import tp.nutriquest.ui.theme.BackgroundGreen
+import tp.nutriquest.ui.theme.LoginTextGreen
 import tp.nutriquest.ui.theme.LoginYellow
+import tp.nutriquest.ui.theme.QuestCheckedTextGreen
 import tp.nutriquest.ui.theme.QuestGreen
 
 @Composable
@@ -44,9 +48,9 @@ fun QuestCompose(
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = QuestGreen
+            containerColor = if (quest.isChecked.value) LoginTextGreen else QuestGreen
         ),
-        border = BorderStroke(2.dp, QuestGreen)
+        border =  if (quest.isChecked.value) BorderStroke(2.dp, LoginTextGreen) else BorderStroke(2.dp, QuestGreen)
     ) {
         Column(
             modifier = Modifier
@@ -59,7 +63,7 @@ fun QuestCompose(
                     .fillMaxWidth(0.8f)
                     .align(Alignment.CenterHorizontally),
                 colors = CardDefaults.cardColors(
-                    containerColor = BackgroundGreen
+                    containerColor = if(quest.isChecked.value) QuestCheckedTextGreen else BackgroundGreen
                 ),
                 shape = RoundedCornerShape(12.dp)
             ) {
@@ -68,10 +72,13 @@ fun QuestCompose(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 6.dp),
+                    fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
                     color = Color.White
                 )
             }
+
+            Spacer(modifier = Modifier.height(10.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -95,11 +102,13 @@ fun QuestCompose(
                     modifier = Modifier.weight(1f)
                 )
 
+                Spacer(modifier = Modifier.width(10.dp))
+
                 Card(
                     modifier = Modifier
                         .size(50.dp)
                         .clickable { quest.isChecked.value = !quest.isChecked.value },
-                    shape = RoundedCornerShape(8.dp),
+                    shape = RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(
                         containerColor = if (quest.isChecked.value) LoginYellow else Color.White
                     ),

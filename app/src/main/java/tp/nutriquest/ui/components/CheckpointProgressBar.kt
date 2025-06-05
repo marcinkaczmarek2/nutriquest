@@ -4,13 +4,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,29 +26,31 @@ import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
-fun CheckpointProgressBar(
-    progress: Progress
-) {
+fun CheckpointProgressBar(progress: Progress) {
     val progressFraction = progress.currentValue.toFloat() / progress.maxValue.toFloat()
 
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(40.dp),
+            .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Image(
-            painter = painterResource(id = progress.iconId),
-            contentDescription = "checkpoint icon",
-            colorFilter = ColorFilter.tint(BackgroundGreen),
-            modifier = Modifier
-                .size(32.dp)
-                .padding(end = 8.dp)
-        )
-
         Box(
             modifier = Modifier
                 .weight(1f)
+                .fillMaxHeight(),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = painterResource(id = progress.iconId),
+                contentDescription = "checkpoint icon",
+                colorFilter = ColorFilter.tint(BackgroundGreen),
+                modifier = Modifier.size(24.dp)
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .weight(5f)
                 .height(24.dp)
                 .clip(RoundedCornerShape(12.dp))
                 .background(BackgroundGreen),
@@ -79,13 +79,24 @@ fun CheckpointProgressBar(
             }
         }
 
-        Spacer(modifier = Modifier.width(8.dp))
-
-        Text(
-            text = progress.maxValue.toString(),
-            color = BackgroundGreen,
-            fontWeight = FontWeight.Bold,
-            fontSize = 14.sp
-        )
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = progress.maxValue.toString(),
+                color = BackgroundGreen,
+                fontWeight = FontWeight.Bold,
+                fontSize = 14.sp
+            )
+        }
     }
 }
+
+
+
+
+
+

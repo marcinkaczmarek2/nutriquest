@@ -53,12 +53,12 @@ fun TaskChart(weeklyData: List<Int>) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(QuestGreen, shape = RoundedCornerShape(12.dp))
-                .padding(horizontal = 16.dp, vertical = 8.dp)
+                .padding(horizontal = 16.dp, vertical = 2.dp)
         ) {
             Text(
                 text = "Tasks completed this",
                 color = Color.White,
-                fontSize = 12.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.Bold,
             )
 
@@ -67,11 +67,13 @@ fun TaskChart(weeklyData: List<Int>) {
                     onClick = { expanded = true },
                     colors = ButtonDefaults.buttonColors(containerColor = LoginYellow),
                     shape = RoundedCornerShape(8.dp),
+                    modifier = Modifier.padding(0.dp)
                 ) {
                     Text(
                         selectedFilter,
                         color = Color.White,
-                        fontSize = 16.sp,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold
                     )
                 }
 

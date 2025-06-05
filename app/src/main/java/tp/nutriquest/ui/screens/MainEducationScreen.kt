@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -123,6 +124,7 @@ fun MainEducationScreenInitialize(navController: NavController) {
                             fontSize = 26.sp,
                             color = BackgroundGreen,
                             textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
                             modifier = Modifier.fillMaxWidth()
                         )
 
