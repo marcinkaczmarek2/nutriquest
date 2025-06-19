@@ -24,7 +24,7 @@ import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
 fun DietSelector(
-    options: List<String> = listOf("Regular", "Vegetarian", "Vegan"),
+    options: List<String> = listOf("Regular", "Vegetarian", "Vegan"), //TODO tu sa diety
     selectedOption: String,
     onOptionSelected: (String) -> Unit,
     width: Float

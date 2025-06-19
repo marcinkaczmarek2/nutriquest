@@ -1,6 +1,7 @@
 package tp.nutriquest.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import tp.nutriquest.R
 import tp.nutriquest.ui.components.AllergySelector
@@ -27,18 +29,19 @@ import tp.nutriquest.ui.components.CustomSlider
 import tp.nutriquest.ui.components.RegisterTopMenu
 import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.data.AllergyOption
+import tp.nutriquest.ui.data.RegisterViewModel
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 
 @Composable
-fun RegisterAllergyScreenInitialize(navController: NavController) {
+fun RegisterAllergyScreenInitialize(navController: NavController, viewModel: RegisterViewModel = viewModel()) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
     val componentOffset = boxHeight + 35.dp
     val componentWidth = 0.8f
 
-    val allergyOptions = listOf(
+    val allergyOptions = listOf( //TODO tutaj sa alergie
         AllergyOption("Peanuts", R.drawable.peanut_icon),
         AllergyOption("Dairy", R.drawable.dairy_icon),
         AllergyOption("Gluten", R.drawable.gluten_icon),
@@ -97,7 +100,14 @@ fun RegisterAllergyScreenInitialize(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(90.dp))
 
-                    YellowButton(navController, "Continue", "register_goal", modifier = Modifier.fillMaxWidth(componentWidth))
+                    YellowButton(navController, "Continue", "register_goal",
+                        modifier = Modifier.fillMaxWidth(componentWidth),
+                        onClickExtra = {
+                            viewModel.allergies = selectedAllergies.value.toList()
+                            viewModel.litersOfWater = waterPerDay.value
+                            //TODO tutaj jest tworzona allergy part RegisterUser
+                        }
+                    )
                 }
             }
             //green box (upper one)

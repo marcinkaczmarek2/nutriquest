@@ -12,9 +12,16 @@ import androidx.navigation.NavController
 import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
-fun YellowButton(navController: NavController, text: String, navigation: String, modifier: Modifier){
+fun YellowButton(
+    navController: NavController,
+    text: String,
+    navigation: String,
+    modifier: Modifier,
+    onClickExtra: (() -> Unit)? = null
+) {
     Button(
         onClick = {
+            onClickExtra?.invoke()
             navController.navigate(navigation)
         },
         colors = ButtonDefaults.buttonColors(

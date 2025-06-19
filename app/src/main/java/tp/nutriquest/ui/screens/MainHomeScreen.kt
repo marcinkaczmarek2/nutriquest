@@ -43,12 +43,12 @@ fun MainHomeScreenInitialize(navController: NavController) {
     val boxHeight = screenHeightDp * 0.9f
     val lowerMenuOffset = boxHeight + 20.dp
     val scrollState = rememberScrollState()
-    val quests = remember {
+    val quests = remember { //TODO do serializacji
         listOf(
             Quest(
                 "2 liters of water",
                 "Staying hydrated improves focus and overall mood.",
-                mutableStateOf(false)
+                mutableStateOf(false) //TODO tutaj oznaczenie czy quest zaliczony
             ),
             Quest(
                 "2 dark chocolate cubes",
@@ -74,7 +74,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
     }
 
 
-    val weeklyQuests = remember {
+    val weeklyQuests = remember { //TODO do serializacji
         listOf(
             mutableStateOf(
                 WeeklyQuest(
@@ -156,6 +156,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
 
                         Spacer(modifier = Modifier.height(10.dp))
 
+                        //TODO start przekazywania questow
                         QuestCompose(quests[0])
 
                         Spacer(modifier = Modifier.height(25.dp))
@@ -189,6 +190,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
                         Spacer(modifier = Modifier.height(10.dp))
 
 
+                        //TODO start przekazywania questow
                         WeeklyQuestCompose(quest = weeklyQuests[0].value)
 
                         Spacer(modifier = Modifier.height(25.dp))

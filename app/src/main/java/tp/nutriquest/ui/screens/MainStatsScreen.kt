@@ -48,20 +48,20 @@ fun MainStatsScreenInitialize(navController: NavController) {
     val lowerMenuOffset = boxHeight + 20.dp
     val scrollState = rememberScrollState()
     var achievements = listOf(
-        Achievement(100, "DAY STREAK", R.drawable.streak_icon),
+        Achievement(100, "DAY STREAK", R.drawable.streak_icon), //TODO przekazywac odpowiednie statystki usera z pliku
         Achievement(4, "WEEKS OF HYDRATION", R.drawable.hydration_icon),
         Achievement(250, "NUTRI-TIPS READ", R.drawable.openbook_icon),
     )
 
     val progresses = listOf(
-        Progress(100, 200, R.drawable.streak_icon),
+        Progress(100, 200, R.drawable.streak_icon), //TODO przekazywac odpowiednie statystki usera z pliku
         Progress(4, 5, R.drawable.hydration_icon),
         Progress(250, 400, R.drawable.openbook_icon),
     )
 
 
 
-    val weeklyData = listOf(4, 1, 2, 5, 1, 3, 2)
+    val weeklyData = listOf(4, 1, 2, 5, 1, 3, 2) //TODO mozna przekazywac dla usera
 
     Box(modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxSize()) {

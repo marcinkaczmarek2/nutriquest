@@ -27,11 +27,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import tp.nutriquest.R
+import tp.nutriquest.ui.data.LoginUser
 import tp.nutriquest.ui.theme.LoginTextGreen
 
 @Composable
 fun LoginPanel(navController: NavController) {
-    var email by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") } //TODO stad brac email i password do stworzenia loginusera
     var password by remember { mutableStateOf("") }
     var rememberMeChecked by remember { mutableStateOf(false) }
 
@@ -39,7 +40,14 @@ fun LoginPanel(navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp)
-            .clip(RoundedCornerShape(topStart = 10.dp, topEnd = 10.dp, bottomStart = 10.dp, bottomEnd = 10.dp))
+            .clip(
+                RoundedCornerShape(
+                    topStart = 10.dp,
+                    topEnd = 10.dp,
+                    bottomStart = 10.dp,
+                    bottomEnd = 10.dp
+                )
+            )
             .background(Color.White)
             .padding(horizontal = 24.dp, vertical = 40.dp),
         contentAlignment = Alignment.Center
@@ -98,7 +106,20 @@ fun LoginPanel(navController: NavController) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            YellowButton(navController, "Login", "home", modifier = Modifier.fillMaxWidth())
+            YellowButton(
+                navController, "Login", "home",
+                modifier = Modifier.fillMaxWidth(),
+                onClickExtra = {
+                    if (email.isNotBlank() && password.isNotBlank()) {
+                        val loginUser = LoginUser(email = email, password = password)
+                        //TODO tutaj stworzony LoginUser mozna go przekazac gdzies dalej
+                    } else {
+                        //TODO zrobic cos jak nie tak bedzie
+                    }
+                }
+
+
+            )
 
             Spacer(modifier = Modifier.height(30.dp))
 

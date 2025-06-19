@@ -1,6 +1,7 @@
 package tp.nutriquest.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import tp.nutriquest.ui.components.LowerNavigationMenu
 import tp.nutriquest.ui.components.YellowButton
+import tp.nutriquest.ui.data.LoginUser
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 
@@ -82,7 +84,12 @@ fun MainSettingsScreenInitialize(navController: NavController) {
                             modifier = Modifier.padding(bottom = 24.dp)
                         )
 
-                        YellowButton(navController, "Log out", "login", modifier = Modifier.fillMaxWidth())
+                        YellowButton(navController, "Log out", "login",
+                            modifier = Modifier.fillMaxWidth(),
+                            onClickExtra = {
+                                //TODO logout do zaimplementowania
+                            }
+                        )
                     }
                 }
             }

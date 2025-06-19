@@ -1,6 +1,7 @@
 package tp.nutriquest.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,16 +23,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import tp.nutriquest.ui.components.CustomSlider
 import tp.nutriquest.ui.components.DietSelector
 import tp.nutriquest.ui.components.RegisterTopMenu
 import tp.nutriquest.ui.components.YellowButton
+import tp.nutriquest.ui.data.LoginUser
+import tp.nutriquest.ui.data.RegisterViewModel
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 
 @Composable
-fun RegisterActivityScreenInitialize(navController: NavController) {
+fun RegisterActivityScreenInitialize(navController: NavController, viewModel: RegisterViewModel = viewModel()) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
@@ -39,7 +43,7 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
     val componentWidth = 0.8f
     val activityHours = remember { mutableFloatStateOf(0f) }
     val mealsPerDay = remember { mutableFloatStateOf(0f) }
-    var selectedDiet by remember { mutableStateOf("Regular") }
+    var selectedDiet by remember { mutableStateOf("Regular") } //TODO tutaj dieta ktora przekazac po kliknieciu guzika continue
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -86,7 +90,15 @@ fun RegisterActivityScreenInitialize(navController: NavController) {
 
                     Spacer(modifier = Modifier.height(40.dp))
 
-                    YellowButton(navController, "Continue", "register_allergy", modifier = Modifier.fillMaxWidth(componentWidth))
+                    YellowButton(navController, "Continue", "register_allergy",
+                        modifier = Modifier.fillMaxWidth(componentWidth),
+                        onClickExtra = {
+                            viewModel.physicalActivity = activityHours.value
+                            viewModel.selectedDiet = selectedDiet
+                            viewModel.mealsPerDay = mealsPerDay.value
+                            //TODO tutaj jest tworzona activity part RegisterUser
+                        }
+                    )
                 }
             }
             //green box (upper one)

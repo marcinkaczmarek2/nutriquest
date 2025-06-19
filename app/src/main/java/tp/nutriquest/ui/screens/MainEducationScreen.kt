@@ -129,6 +129,7 @@ fun MainEducationScreenInitialize(navController: NavController) {
 
                         Spacer(modifier = Modifier.height(20.dp))
 
+                        //TODO przekazywac odpowiednie goale usera
                         GoalOverviewCard(goalOverviews[0])
 
                         Spacer(modifier = Modifier.height(20.dp))
