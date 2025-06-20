@@ -28,6 +28,7 @@ import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.data.LoginUser
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
+import tp.nutriquest.backend.*
 
 @Composable
 fun MainSettingsScreenInitialize(navController: NavController) {
@@ -88,6 +89,7 @@ fun MainSettingsScreenInitialize(navController: NavController) {
                             modifier = Modifier.fillMaxWidth(),
                             onClickExtra = {
                                 //TODO logout do zaimplementowania
+                                LogoutUser()
                             }
                         )
                     }

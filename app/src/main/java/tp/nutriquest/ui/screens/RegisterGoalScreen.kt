@@ -117,12 +117,14 @@ fun RegisterGoalScreenInitialize(navController: NavController, viewModel: Regist
                         onClickExtra = {
                             viewModel.goals = selectedGoals.toList()
                             val registerUser = viewModel.toRegisterUser()
+
                             //TODO tutaj jest tworzona goal part RegisterUser oraz finalny RegisterUser
                             //TODO tutaj przykladowy stworzony user:
                             //RegisterUser(email=test@gmail.com, name=testName, surname=testSurname, username=testUsername, password=testPassword, height=testHeight, weight=testWeight, gender=testGender,
                             //physicalActivity=2.8433204, selectedDiet=Vegan, mealsPerDay=8.0,
                             // allergies=[Peanuts, Seafood, Gluten], litersOfWater=2.849698,
                             // goals=[Improve overall wellbeing, Strengthen immunity, Improve concentration])
+                            RegisterUserFunction(registerUser)
                         }
                     )
 

@@ -30,6 +30,7 @@ import tp.nutriquest.ui.components.RegisterTopMenu
 import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.data.RegisterViewModel
 import tp.nutriquest.ui.theme.BackgroundGrey
+import tp.nutriquest.backend.*
 
 @Composable
 fun RegisterDataScreenInitialize(navController: NavController, viewModel: RegisterViewModel = viewModel()) {

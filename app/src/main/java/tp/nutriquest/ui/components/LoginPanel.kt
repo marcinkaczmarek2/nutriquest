@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import tp.nutriquest.R
 import tp.nutriquest.ui.data.LoginUser
 import tp.nutriquest.ui.theme.LoginTextGreen
+import tp.nutriquest.backend.*
 
 @Composable
 fun LoginPanel(navController: NavController) {
@@ -113,8 +114,16 @@ fun LoginPanel(navController: NavController) {
                     if (email.isNotBlank() && password.isNotBlank()) {
                         val loginUser = LoginUser(email = email, password = password)
                         //TODO tutaj stworzony LoginUser mozna go przekazac gdzies dalej
+                        if (LoginUserFunction(email))
+                        {
+                            //przejdz dalej
+                        }
+                        else
+                        {
+                            //nie ma takich danych
+                        }
                     } else {
-                        //TODO zrobic cos jak nie tak bedzie
+                        //zrobic cos jak nie tak bedzie
                     }
                 }
 

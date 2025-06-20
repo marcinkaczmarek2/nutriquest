@@ -1,4 +1,8 @@
 package tp.nutriquest.ui.data
+import kotlinx.serialization.json.*
+import java.io.File
+
+@Serializable
 
 data class RegisterUser (
     val email: String,

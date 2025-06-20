@@ -34,6 +34,7 @@ import tp.nutriquest.ui.data.Quest
 import tp.nutriquest.ui.data.WeeklyQuest
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
+import tp.nutriquest.backend.*
 
 
 @Composable
@@ -155,7 +156,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
                         )
 
                         Spacer(modifier = Modifier.height(10.dp))
-
+                        quests = GetUserFromSessionMemory().quests
                         //TODO start przekazywania questow
                         QuestCompose(quests[0])
 
@@ -189,7 +190,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
 
                         Spacer(modifier = Modifier.height(10.dp))
 
-
+                        quests = GetUserFromSessionMemory().weeklyQuests
                         //TODO start przekazywania questow
                         WeeklyQuestCompose(quest = weeklyQuests[0].value)
 
