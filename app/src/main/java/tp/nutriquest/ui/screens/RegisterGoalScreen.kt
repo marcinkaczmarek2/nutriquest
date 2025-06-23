@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import tp.nutriquest.R
+import tp.nutriquest.backend.RegisterUserFunction
 import tp.nutriquest.ui.components.GoalSelector
 import tp.nutriquest.ui.components.RegisterTopMenu
 import tp.nutriquest.ui.components.YellowButton
@@ -124,7 +125,7 @@ fun RegisterGoalScreenInitialize(navController: NavController, viewModel: Regist
                             //physicalActivity=2.8433204, selectedDiet=Vegan, mealsPerDay=8.0,
                             // allergies=[Peanuts, Seafood, Gluten], litersOfWater=2.849698,
                             // goals=[Improve overall wellbeing, Strengthen immunity, Improve concentration])
-                            RegisterUserFunction(registerUser)
+                            //TODO RegisterUserFunction(registerUser)
                         }
                     )
 

@@ -44,31 +44,36 @@ fun MainHomeScreenInitialize(navController: NavController) {
     val boxHeight = screenHeightDp * 0.9f
     val lowerMenuOffset = boxHeight + 20.dp
     val scrollState = rememberScrollState()
-    val quests = remember { //TODO do serializacji
+    var quests = remember { //TODO do serializacji
         listOf(
             Quest(
                 "2 liters of water",
                 "Staying hydrated improves focus and overall mood.",
+                listOf(""),
                 mutableStateOf(false) //TODO tutaj oznaczenie czy quest zaliczony
             ),
             Quest(
                 "2 dark chocolate cubes",
                 "Flavonoids can enhance blood flow to your brain, boosting mental clarity and reducing stress.",
+                listOf(""),
                 mutableStateOf(false)
             ),
             Quest(
                 "a banana",
                 "Packed with potassium, it supports muscle function and helps prevent cramps.",
+                listOf(""),
                 mutableStateOf(false)
             ),
             Quest(
                 "handful of nuts",
                 "Rich in healthy fats and magnesium, they support brain health and satiety.",
+                listOf("Nuts"),
                 mutableStateOf(false)
             ),
             Quest(
                 "a glass of green tea",
                 "Contains L-theanine and caffeine — a combo that improves alertness without jitters.",
+                listOf(""),
                 mutableStateOf(false)
             ),
         )
@@ -81,6 +86,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
                 WeeklyQuest(
                     title = "Eat vegetables",
                     information = "Eat vegetables at least 7 times this week. Boosts fiber and supports digestion. Keep it up all week!",
+                    listOf(""),
                     progress = mutableStateOf(Progress(currentValue = 0, maxValue = 7, iconId = R.drawable.vegetables_icon)),
                     isChecked = mutableStateOf(false)
                 )
@@ -90,6 +96,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
                 WeeklyQuest(
                     title = "New healthy foods",
                     information = "Try introducing a new fruit, vegetable, grain, or nut daily. This improves nutrient diversity and helps you discover new favorites.",
+                    listOf(""),
                     progress = mutableStateOf(Progress(currentValue = 0, maxValue = 7, iconId = R.drawable.healthy_food_icon)),
                     isChecked = mutableStateOf(false)
                 )
@@ -99,6 +106,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
                 WeeklyQuest(
                     title = "Home-cooked meals",
                     information = "Try to make at home-cooked meals at least 5 times this week. Home cooking gives you full control over ingredients and portion sizes — a key step toward better nutrition.",
+                    listOf(""),
                     progress = mutableStateOf(Progress(currentValue = 0, maxValue = 5, iconId = R.drawable.cooking_icon)),
                     isChecked = mutableStateOf(false)
                 )
@@ -156,7 +164,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
                         )
 
                         Spacer(modifier = Modifier.height(10.dp))
-                        quests = GetUserFromSessionMemory().quests
+                        //TODO quests = GetUserFromSessionMemory().quests
                         //TODO start przekazywania questow
                         QuestCompose(quests[0])
 
@@ -190,7 +198,7 @@ fun MainHomeScreenInitialize(navController: NavController) {
 
                         Spacer(modifier = Modifier.height(10.dp))
 
-                        quests = GetUserFromSessionMemory().weeklyQuests
+                        //TODO quests = GetUserFromSessionMemory().weeklyQuests
                         //TODO start przekazywania questow
                         WeeklyQuestCompose(quest = weeklyQuests[0].value)
 

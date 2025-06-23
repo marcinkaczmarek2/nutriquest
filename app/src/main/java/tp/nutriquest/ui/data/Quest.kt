@@ -2,6 +2,7 @@ package tp.nutriquest.ui.data
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.*
 import java.io.File
 

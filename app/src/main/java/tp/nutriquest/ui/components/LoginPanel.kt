@@ -114,9 +114,9 @@ fun LoginPanel(navController: NavController) {
                     if (email.isNotBlank() && password.isNotBlank()) {
                         val loginUser = LoginUser(email = email, password = password)
                         //TODO tutaj stworzony LoginUser mozna go przekazac gdzies dalej
-                        if (LoginUserFunction(email))
+                        if (LoginUserFunction(loginUser))
                         {
-                            //przejdz dalej
+
                         }
                         else
                         {

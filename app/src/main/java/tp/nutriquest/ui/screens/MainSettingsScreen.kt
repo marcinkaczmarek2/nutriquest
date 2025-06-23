@@ -89,7 +89,7 @@ fun MainSettingsScreenInitialize(navController: NavController) {
                             modifier = Modifier.fillMaxWidth(),
                             onClickExtra = {
                                 //TODO logout do zaimplementowania
-                                LogoutUser()
+                                //TODO crash LogoutUser()
                             }
                         )
                     }
