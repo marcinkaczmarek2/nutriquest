@@ -19,10 +19,13 @@ fun YellowButton(
     modifier: Modifier,
     onClickExtra: (() -> Unit)? = null
 ) {
+
     Button(
         onClick = {
             onClickExtra?.invoke()
-            navController.navigate(navigation)
+            if (navigation != "noop") {
+                navController.navigate(navigation)
+            }
         },
         colors = ButtonDefaults.buttonColors(
             containerColor = LoginYellow,

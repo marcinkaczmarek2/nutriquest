@@ -48,9 +48,9 @@ fun QuestCompose(
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = if (quest.isChecked.value) LoginTextGreen else QuestGreen
+            containerColor = if (quest.checkedState.value) LoginTextGreen else QuestGreen
         ),
-        border =  if (quest.isChecked.value) BorderStroke(2.dp, LoginTextGreen) else BorderStroke(2.dp, QuestGreen)
+        border =  if (quest.checkedState.value) BorderStroke(2.dp, LoginTextGreen) else BorderStroke(2.dp, QuestGreen)
     ) {
         Column(
             modifier = Modifier
@@ -63,7 +63,7 @@ fun QuestCompose(
                     .fillMaxWidth(0.8f)
                     .align(Alignment.CenterHorizontally),
                 colors = CardDefaults.cardColors(
-                    containerColor = if(quest.isChecked.value) QuestCheckedTextGreen else BackgroundGreen
+                    containerColor = if(quest.checkedState.value) QuestCheckedTextGreen else BackgroundGreen
                 ),
                 shape = RoundedCornerShape(12.dp)
             ) {
@@ -107,10 +107,10 @@ fun QuestCompose(
                 Card(
                     modifier = Modifier
                         .size(50.dp)
-                        .clickable { quest.isChecked.value = !quest.isChecked.value },
+                        .clickable { quest.checkedState.value = !quest.checkedState.value },
                     shape = RoundedCornerShape(12.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = if (quest.isChecked.value) LoginYellow else Color.White
+                        containerColor = if (quest.checkedState.value) LoginYellow else Color.White
                     ),
                     border = BorderStroke(1.dp, QuestGreen)
                 ) {
@@ -122,7 +122,7 @@ fun QuestCompose(
                             painter = painterResource(id = R.drawable.checkmark_icon),
                             contentDescription = "Checkmark icon",
                             colorFilter = ColorFilter.tint(
-                                if (quest.isChecked.value) Color.White else QuestGreen
+                                if (quest.checkedState.value) Color.White else QuestGreen
                             ),
                             modifier = Modifier.size(45.dp)
                         )

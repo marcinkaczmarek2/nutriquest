@@ -1,5 +1,6 @@
 package tp.nutriquest.ui.components
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -30,12 +33,14 @@ import tp.nutriquest.R
 import tp.nutriquest.ui.data.LoginUser
 import tp.nutriquest.ui.theme.LoginTextGreen
 import tp.nutriquest.backend.*
+import tp.nutriquest.ui.data.UserViewModel
 
 @Composable
-fun LoginPanel(navController: NavController) {
+fun LoginPanel(navController: NavController, userViewModel: UserViewModel) {
     var email by remember { mutableStateOf("") } //TODO stad brac email i password do stworzenia loginusera
     var password by remember { mutableStateOf("") }
     var rememberMeChecked by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -107,28 +112,38 @@ fun LoginPanel(navController: NavController) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
+            val route = remember { mutableStateOf("") }
+
+            LaunchedEffect(route.value) {
+                if (route.value.isNotBlank()) {
+                    navController.navigate(route.value)
+                    route.value = ""
+                }
+            }
+
             YellowButton(
-                navController, "Login", "home",
+                navController = navController,
+                text = "Login",
+                navigation = "noop", // fikcyjna trasa — i tak jej nie użyjemy
                 modifier = Modifier.fillMaxWidth(),
                 onClickExtra = {
                     if (email.isNotBlank() && password.isNotBlank()) {
                         val loginUser = LoginUser(email = email, password = password)
-                        //TODO tutaj stworzony LoginUser mozna go przekazac gdzies dalej
-                        if (LoginUserFunction(loginUser))
-                        {
-
-                        }
-                        else
-                        {
-                            //nie ma takich danych
+                        if (LoginUserFunction(context, loginUser)) {
+                            Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
+                            route.value = "home"
+                        } else {
+                            Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT).show()
                         }
                     } else {
-                        //zrobic cos jak nie tak bedzie
+                        Toast.makeText(context, "Email and password cannot be empty", Toast.LENGTH_SHORT).show()
                     }
                 }
-
-
             )
+
+
+
+
 
             Spacer(modifier = Modifier.height(30.dp))
 

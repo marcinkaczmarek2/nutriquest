@@ -30,13 +30,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import tp.nutriquest.R
 import tp.nutriquest.ui.components.LoginPanel
+import tp.nutriquest.ui.data.UserViewModel
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.LoginYellow
 
 
 @Composable
-fun LoginScreenInitialize(navController: NavController) {
+fun LoginScreenInitialize(navController: NavController, userViewModel: UserViewModel) {
     val configuration = LocalConfiguration.current
     val screenHeightDp = configuration.screenHeightDp.dp
     val screenWidthDp = configuration.screenWidthDp.dp
@@ -143,7 +144,7 @@ fun LoginScreenInitialize(navController: NavController) {
 
             Spacer(modifier = Modifier.height(loginPanelOffsetY))
 
-            LoginPanel(navController = navController)
+            LoginPanel(navController = navController, userViewModel)
         }
     }
 }

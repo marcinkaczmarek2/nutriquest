@@ -28,11 +28,12 @@ import tp.nutriquest.ui.components.MainScreenContentColumnModifier
 import tp.nutriquest.ui.components.TopLogoAndStats
 import tp.nutriquest.ui.data.Goal
 import tp.nutriquest.ui.data.GoalOverview
+import tp.nutriquest.ui.data.UserViewModel
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 
 @Composable
-fun MainEducationScreenInitialize(navController: NavController) {
+fun MainEducationScreenInitialize(navController: NavController, userViewModel: UserViewModel) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.9f

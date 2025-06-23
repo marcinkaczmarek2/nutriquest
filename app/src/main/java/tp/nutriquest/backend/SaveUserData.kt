@@ -1,4 +1,5 @@
 package tp.nutriquest.backend
+import android.content.Context
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
 import java.io.File
@@ -7,9 +8,9 @@ import tp.nutriquest.ui.data.Quest
 import tp.nutriquest.ui.data.WeeklyQuest
 
 
-fun SaveUserData(newUser: BackendUser) {
+fun SaveUserData(context: Context, newUser: BackendUser) {
     val filename = "${newUser.user.email}.json"
-    val file = File(filename)
+    val file = File(context.filesDir, filename)
 
     if (!file.exists()) {
         println("User disappeared")

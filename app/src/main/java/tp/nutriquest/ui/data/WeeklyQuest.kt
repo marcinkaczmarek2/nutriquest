@@ -9,9 +9,9 @@ import java.io.File
 data class WeeklyQuest(
     val title: String,
     val information: String,
-    var notAllowedFor: List<String>,
-    val progress: MutableState<Progress>,
-    val isChecked: MutableState<Boolean>
+    val notAllowedFor: List<String>,
+    var progress: Progress,
+    var isChecked: Boolean
 )
 
 

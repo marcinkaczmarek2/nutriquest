@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Eat vegetables",
+    "information": "Eat vegetables at least 7 times this week. Boosts fiber and supports digestion. Keep it up all week!",
+    "notAllowedFor": [""],
+    "progress": {
+      "currentValue": 0,
+      "maxValue": 7,
+      "iconName": "cooking_icon"
+    },
+    "isChecked": false
+  },
+  {
+    "title": "Drink 8 glasses of water",
+    "information": "Keep yourself hydrated with at least 8 glasses of water this week.",
+    "notAllowedFor": ["Soy"],
+    "progress": {
+      "currentValue": 0,
+      "maxValue": 8,
+      "iconName": "cooking_icon"
+    },
+    "isChecked": false
+  },
+  {
+    "title": "No sugary snacks",
+    "information": "Avoid sugary snacks for the entire week to support better energy levels.",
+    "notAllowedFor": [""],
+    "progress": {
+      "currentValue": 0,
+      "maxValue": 7,
+      "iconName": "cooking_icon"
+    },
+    "isChecked": false
+  }
+]

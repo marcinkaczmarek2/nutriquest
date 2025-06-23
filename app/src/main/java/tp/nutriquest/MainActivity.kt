@@ -4,11 +4,14 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import tp.nutriquest.backend.copyAssetToInternalStorage
 import tp.nutriquest.ui.data.RegisterViewModel
+import tp.nutriquest.ui.data.UserViewModel
 import tp.nutriquest.ui.screens.MainEducationScreenInitialize
 import tp.nutriquest.ui.screens.LoginScreenInitialize
 import tp.nutriquest.ui.screens.RegisterDataScreenInitialize
@@ -27,12 +30,16 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             NutriquestTheme {
+                val context = LocalContext.current
+                copyAssetToInternalStorage(context, "DailyQuests.json")
+                copyAssetToInternalStorage(context, "WeeklyQuests.json")
                 val navController = rememberNavController()
                 val registerViewModel: RegisterViewModel = viewModel()
+                val userViewModel: UserViewModel = viewModel()
 
                 NavHost(navController = navController, startDestination = "login") {
 
-                    composable("login") { LoginScreenInitialize(navController) }
+                    composable("login") { LoginScreenInitialize(navController, userViewModel) }
 
                     composable("register_data") {
                         RegisterDataScreenInitialize(navController, registerViewModel)
@@ -44,13 +51,13 @@ class MainActivity : ComponentActivity() {
                         RegisterAllergyScreenInitialize(navController, registerViewModel)
                     }
                     composable("register_goal") {
-                        RegisterGoalScreenInitialize(navController, registerViewModel)
+                        RegisterGoalScreenInitialize(navController, registerViewModel, userViewModel)
                     }
 
-                    composable("home") { MainHomeScreenInitialize(navController) }
-                    composable("stats") { MainStatsScreenInitialize(navController) }
-                    composable("education") { MainEducationScreenInitialize(navController) }
-                    composable("settings") { MainSettingsScreenInitialize(navController) }
+                    composable("home") { MainHomeScreenInitialize(navController, userViewModel) }
+                    composable("stats") { MainStatsScreenInitialize(navController, userViewModel) }
+                    composable("education") { MainEducationScreenInitialize(navController, userViewModel) }
+                    composable("settings") { MainSettingsScreenInitialize(navController, userViewModel) }
                 }
             }
         }

@@ -21,12 +21,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import tp.nutriquest.ui.data.Progress
+import tp.nutriquest.ui.data.ResolvedProgress
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
-fun CheckpointProgressBar(progress: Progress) {
+fun CheckpointProgressBar(progress: ResolvedProgress) {
     val progressFraction = progress.currentValue.toFloat() / progress.maxValue.toFloat()
 
     Row(

@@ -1,4 +1,5 @@
 package tp.nutriquest.backend
+import android.content.Context
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
@@ -8,9 +9,9 @@ import tp.nutriquest.ui.data.Quest
 import tp.nutriquest.ui.data.WeeklyQuest
 
 
-fun PutUserInSessionMemory(email: String) {
+fun PutUserInSessionMemory(context: Context,email: String) {
     val filename = "SessionUsername.json"
-    val file = File(filename)
+    val file = File(context.filesDir, filename)
 
 
     val json = Json { prettyPrint = true }

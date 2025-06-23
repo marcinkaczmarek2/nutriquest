@@ -19,7 +19,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -31,6 +30,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tp.nutriquest.R
+import tp.nutriquest.ui.data.ResolvedWeeklyQuest
 import tp.nutriquest.ui.data.WeeklyQuest
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.LoginTextGreen
@@ -40,11 +40,10 @@ import tp.nutriquest.ui.theme.WeeklyQuestGreen
 
 @Composable
 fun WeeklyQuestCompose(
-    quest: WeeklyQuest
+    quest: ResolvedWeeklyQuest,
+    onQuestChange: (ResolvedWeeklyQuest) -> Unit
 ) {
-    LaunchedEffect(quest.progress.value.currentValue) {
-        quest.isChecked.value = quest.progress.value.currentValue >= quest.progress.value.maxValue
-    }
+    val isChecked = quest.progress.currentValue >= quest.progress.maxValue
 
     Card(
         modifier = Modifier
@@ -52,9 +51,9 @@ fun WeeklyQuestCompose(
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = if (quest.isChecked.value) LoginTextGreen else WeeklyQuestGreen
+            containerColor = if (isChecked) LoginTextGreen else WeeklyQuestGreen
         ),
-        border = if (quest.isChecked.value) BorderStroke(2.dp, LoginTextGreen) else BorderStroke(2.dp, WeeklyQuestGreen)
+        border = if (isChecked) BorderStroke(2.dp, LoginTextGreen) else BorderStroke(2.dp, WeeklyQuestGreen)
     ) {
         Column(
             modifier = Modifier
@@ -66,7 +65,7 @@ fun WeeklyQuestCompose(
                     .fillMaxWidth(0.8f)
                     .align(Alignment.CenterHorizontally),
                 colors = CardDefaults.cardColors(
-                    containerColor = if (quest.isChecked.value) QuestCheckedTextGreen else BackgroundGreen
+                    containerColor = if (isChecked) QuestCheckedTextGreen else BackgroundGreen
                 ),
                 shape = RoundedCornerShape(12.dp)
             ) {
@@ -107,7 +106,7 @@ fun WeeklyQuestCompose(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            CheckpointProgressBar(progress = quest.progress.value)
+            CheckpointProgressBar(progress = quest.progress)
 
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -119,10 +118,13 @@ fun WeeklyQuestCompose(
             ) {
                 Button(
                     onClick = {
-                        if (quest.progress.value.currentValue > 0) {
-                            quest.progress.value = quest.progress.value.copy(
-                                currentValue = quest.progress.value.currentValue - 1
+                        if (quest.progress.currentValue > 0) {
+                            val updatedQuest = quest.copy(
+                                progress = quest.progress.copy(
+                                    currentValue = quest.progress.currentValue - 1
+                                )
                             )
+                            onQuestChange(updatedQuest)
                         }
                     },
                     colors = ButtonDefaults.buttonColors(
@@ -136,10 +138,13 @@ fun WeeklyQuestCompose(
 
                 Button(
                     onClick = {
-                        if (quest.progress.value.currentValue < quest.progress.value.maxValue) {
-                            quest.progress.value = quest.progress.value.copy(
-                                currentValue = quest.progress.value.currentValue + 1
+                        if (quest.progress.currentValue < quest.progress.maxValue) {
+                            val updatedQuest = quest.copy(
+                                progress = quest.progress.copy(
+                                    currentValue = quest.progress.currentValue + 1
+                                )
                             )
+                            onQuestChange(updatedQuest)
                         }
                     },
                     colors = ButtonDefaults.buttonColors(
@@ -154,4 +159,5 @@ fun WeeklyQuestCompose(
         }
     }
 }
+
 

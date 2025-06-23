@@ -29,9 +29,10 @@ import tp.nutriquest.ui.data.LoginUser
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.backend.*
+import tp.nutriquest.ui.data.UserViewModel
 
 @Composable
-fun MainSettingsScreenInitialize(navController: NavController) {
+fun MainSettingsScreenInitialize(navController: NavController, userViewModel: UserViewModel) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.9f

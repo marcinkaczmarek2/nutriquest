@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class Progress(
     val currentValue: Int,
     val maxValue: Int,
-    val iconId: Int,
+    val iconName: String,
 )

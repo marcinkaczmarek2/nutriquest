@@ -1,16 +1,17 @@
 package tp.nutriquest.backend
 
+import android.content.Context
 import kotlinx.serialization.json.Json
 import java.io.File
 import tp.nutriquest.ui.data.RegisterUser
 import tp.nutriquest.ui.data.Quest
 
-fun GenerateDailyQuestsForUser(user: RegisterUser): List<Quest> {
+fun GenerateDailyQuestsForUser(context: Context, user: RegisterUser?): List<Quest> {
     val AMOUNT_OF_QUESTS = 5
     val filename = "DailyQuests.json"
-    val file = File(filename)
+    val file = File(context.filesDir, filename)
 
-    if (!file.exists()) {
+    if (!file.exists() || user == null) {
         println("Critical error, QuestFile does not exist")
         return emptyList()
     }

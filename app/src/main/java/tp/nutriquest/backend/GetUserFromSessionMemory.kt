@@ -1,11 +1,12 @@
 package tp.nutriquest.backend
+import android.content.Context
 import kotlinx.serialization.json.Json
 import java.io.File
 
 
-fun GetUserFromSessionMemory() : BackendUser? {
+fun GetUserFromSessionMemory(context: Context) : BackendUser? {
     var filename = "SessionUsername.json"
-    var file = File(filename)
+    var file = File(context.filesDir, filename)
     if (!file.exists()) {
         println("Critical error, memory does not exist")
         return null

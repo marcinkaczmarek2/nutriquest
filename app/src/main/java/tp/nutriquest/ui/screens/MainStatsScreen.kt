@@ -36,12 +36,14 @@ import tp.nutriquest.ui.components.TaskChart
 import tp.nutriquest.ui.components.TopLogoAndStats
 import tp.nutriquest.ui.data.Achievement
 import tp.nutriquest.ui.data.Progress
+import tp.nutriquest.ui.data.ResolvedProgress
+import tp.nutriquest.ui.data.UserViewModel
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 import tp.nutriquest.ui.theme.QuestGreen
 
 @Composable
-fun MainStatsScreenInitialize(navController: NavController) {
+fun MainStatsScreenInitialize(navController: NavController, userViewModel: UserViewModel) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.9f
@@ -54,9 +56,9 @@ fun MainStatsScreenInitialize(navController: NavController) {
     )
 
     val progresses = listOf(
-        Progress(100, 200, R.drawable.streak_icon), //TODO przekazywac odpowiednie statystki usera z pliku
-        Progress(4, 5, R.drawable.hydration_icon),
-        Progress(250, 400, R.drawable.openbook_icon),
+        ResolvedProgress(100, 200, R.drawable.streak_icon),
+        ResolvedProgress(4, 5, R.drawable.hydration_icon),
+        ResolvedProgress(250, 400, R.drawable.openbook_icon),
     )
 
 

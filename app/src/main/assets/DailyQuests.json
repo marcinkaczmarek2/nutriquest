@@ -1,0 +1,80 @@
+[
+  {
+    "title": "2 liters of water",
+    "information": "Staying hydrated improves focus and overall mood.",
+    "notAllowedFor": [""],
+    "isChecked": false
+  },
+  {
+    "title": "2 dark chocolate cubes",
+    "information": "Flavonoids can enhance blood flow to your brain, boosting mental clarity and reducing stress.",
+    "notAllowedFor": [""],
+    "isChecked": false
+  },
+  {
+    "title": "a banana",
+    "information": "Packed with potassium, it supports muscle function and helps prevent cramps.",
+    "notAllowedFor": [""],
+    "isChecked": false
+  },
+  {
+    "title": "handful of nuts",
+    "information": "Rich in healthy fats and magnesium, they support brain health and satiety.",
+    "notAllowedFor": ["Nuts"],
+    "isChecked": false
+  },
+  {
+    "title": "a glass of green tea",
+    "information": "Contains L-theanine and caffeine — a combo that improves alertness without jitters.",
+    "notAllowedFor": [""],
+    "isChecked": false
+  },
+  {
+    "title": "bowl of oats",
+    "information": "Provides sustained energy.",
+    "notAllowedFor": ["Gluten"],
+    "isChecked": false
+  },
+  {
+    "title": "fresh strawberries",
+    "information": "Rich in antioxidants.",
+    "notAllowedFor": [""],
+    "isChecked": false
+  },
+  {
+    "title": "avocado toast",
+    "information": "Healthy fats from avocado support brain function.",
+    "notAllowedFor": ["Gluten"],
+    "isChecked": false
+  },
+  {
+    "title": "yogurt with honey",
+    "information": "Good source of probiotics.",
+    "notAllowedFor": ["Dairy"],
+    "isChecked": false
+  },
+  {
+    "title": "carrot sticks",
+    "information": "Crunchy and full of beta-carotene.",
+    "notAllowedFor": [""],
+    "isChecked": false
+  },
+  {
+    "title": "soy milk latte",
+    "information": "A creamy alternative to regular milk.",
+    "notAllowedFor": ["Soy"],
+    "isChecked": false
+  },
+  {
+    "title": "grilled salmon",
+    "information": "Rich source of omega-3 fatty acids.",
+    "notAllowedFor": ["Seafood"],
+    "isChecked": false
+  },
+  {
+    "title": "scrambled eggs",
+    "information": "High in protein and easy to digest.",
+    "notAllowedFor": ["Eggs"],
+    "isChecked": false
+  }
+]

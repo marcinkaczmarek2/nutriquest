@@ -37,11 +37,12 @@ import tp.nutriquest.ui.components.YellowButton
 import tp.nutriquest.ui.data.Goal
 import tp.nutriquest.ui.data.RegisterUser
 import tp.nutriquest.ui.data.RegisterViewModel
+import tp.nutriquest.ui.data.UserViewModel
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.BackgroundGrey
 
 @Composable
-fun RegisterGoalScreenInitialize(navController: NavController, viewModel: RegisterViewModel = viewModel()) {
+fun RegisterGoalScreenInitialize(navController: NavController, viewModel: RegisterViewModel = viewModel(), userViewModel: UserViewModel) {
     val configuration = LocalConfiguration.current
     val screenHeightDp: Dp = configuration.screenHeightDp.dp
     val boxHeight = screenHeightDp * 0.25f
@@ -118,14 +119,8 @@ fun RegisterGoalScreenInitialize(navController: NavController, viewModel: Regist
                         onClickExtra = {
                             viewModel.goals = selectedGoals.toList()
                             val registerUser = viewModel.toRegisterUser()
-
-                            //TODO tutaj jest tworzona goal part RegisterUser oraz finalny RegisterUser
-                            //TODO tutaj przykladowy stworzony user:
-                            //RegisterUser(email=test@gmail.com, name=testName, surname=testSurname, username=testUsername, password=testPassword, height=testHeight, weight=testWeight, gender=testGender,
-                            //physicalActivity=2.8433204, selectedDiet=Vegan, mealsPerDay=8.0,
-                            // allergies=[Peanuts, Seafood, Gluten], litersOfWater=2.849698,
-                            // goals=[Improve overall wellbeing, Strengthen immunity, Improve concentration])
-                            //TODO RegisterUserFunction(registerUser)
+                            userViewModel.setUser(registerUser)
+                            RegisterUserFunction(context, registerUser)
                         }
                     )
 

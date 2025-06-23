@@ -42,7 +42,7 @@ fun RegisterAllergyScreenInitialize(navController: NavController, viewModel: Reg
     val componentWidth = 0.8f
 
     val allergyOptions = listOf( //TODO tutaj sa alergie
-        AllergyOption("Peanuts", R.drawable.peanut_icon),
+        AllergyOption("Nuts", R.drawable.peanut_icon),
         AllergyOption("Dairy", R.drawable.dairy_icon),
         AllergyOption("Gluten", R.drawable.gluten_icon),
         AllergyOption("Soy", R.drawable.soy_icon),
