@@ -28,11 +28,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import tp.nutriquest.R
+import tp.nutriquest.ui.data.UserViewModel
 import tp.nutriquest.ui.theme.BackgroundGreen
 import tp.nutriquest.ui.theme.LoginYellow
 
 @Composable
-fun TopLogoAndStats(){
+fun TopLogoAndStats(userViewModel: UserViewModel){
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -91,7 +92,7 @@ fun TopLogoAndStats(){
                 Spacer(modifier = Modifier.width(8.dp))
 
                 Text(
-                    text = "100", // TODO: podmienić na faktyczny streak
+                    text = if (userViewModel.getUser()?.email =="prototype@gmail.com") "0" else "100", // TODO: podmienić na faktyczny streak
                     color = LoginYellow,
                     fontWeight = FontWeight.Bold,
                     fontSize = 22.sp

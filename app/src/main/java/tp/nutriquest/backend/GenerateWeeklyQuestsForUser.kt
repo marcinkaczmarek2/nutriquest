@@ -7,7 +7,7 @@ import tp.nutriquest.ui.data.RegisterUser
 import tp.nutriquest.ui.data.WeeklyQuest
 
 fun GenerateWeeklyQuestsForUser(context: Context, user: RegisterUser?): List<WeeklyQuest> {
-    val AMOUNT_OF_QUESTS = 3
+    val AMOUNT_OF_QUESTS = 2
     val filename = "WeeklyQuests.json"
     val file = File(context.filesDir, filename)
 

@@ -79,6 +79,21 @@ fun MainEducationScreenInitialize(navController: NavController, userViewModel: U
                 "for regeneration and even skin tone"
             )
         ),
+        GoalOverview(
+            goal = goals[3],
+            keyFocusAreas = listOf(
+                "Complex carbohydrates",
+                "Lean protein",
+                "Magnesium & electrolytes",
+                "Iron and B-vitamins"
+            ),
+            focusAreas = listOf(
+                "to fuel workouts and aid recovery",
+                "to support muscle repair and maintenance",
+                "to prevent cramping and maintain endurance",
+                "to enhance oxygen transport and energy metabolism"
+            )
+        )
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -108,7 +123,7 @@ fun MainEducationScreenInitialize(navController: NavController, userViewModel: U
                     .background(BackgroundGrey)
             ) {
 
-                TopLogoAndStats()
+                TopLogoAndStats(userViewModel)
 
                 Box(
                     modifier = Modifier
@@ -136,6 +151,10 @@ fun MainEducationScreenInitialize(navController: NavController, userViewModel: U
                         Spacer(modifier = Modifier.height(20.dp))
 
                         GoalOverviewCard(goalOverviews[1])
+
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        GoalOverviewCard(goalOverviews[2])
                     }
                 }
             }

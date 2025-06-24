@@ -33,6 +33,7 @@ import tp.nutriquest.R
 import tp.nutriquest.ui.data.LoginUser
 import tp.nutriquest.ui.theme.LoginTextGreen
 import tp.nutriquest.backend.*
+import tp.nutriquest.ui.data.RegisterUser
 import tp.nutriquest.ui.data.UserViewModel
 
 @Composable
@@ -41,6 +42,22 @@ fun LoginPanel(navController: NavController, userViewModel: UserViewModel) {
     var password by remember { mutableStateOf("") }
     var rememberMeChecked by remember { mutableStateOf(false) }
     val context = LocalContext.current
+    val superUser = RegisterUser(
+        email = "superuser@gmail.com",
+        name = "Super",
+        surname = "User",
+        username = "superuser",
+        password = "123",
+        height = "180",
+        weight = "75",
+        gender = "male",
+        physicalActivity = 1.2f,
+        selectedDiet = "Balanced",
+        mealsPerDay = 3f,
+        allergies = emptyList(), // brak alergii
+        litersOfWater = 2.0f,
+        goals = listOf("Improve overall wellbeing", "Improve appearance", "Support physical activity")
+    )
 
     Box(
         modifier = Modifier
@@ -124,12 +141,13 @@ fun LoginPanel(navController: NavController, userViewModel: UserViewModel) {
             YellowButton(
                 navController = navController,
                 text = "Login",
-                navigation = "noop", // fikcyjna trasa — i tak jej nie użyjemy
+                navigation = "noop",
                 modifier = Modifier.fillMaxWidth(),
                 onClickExtra = {
                     if (email.isNotBlank() && password.isNotBlank()) {
                         val loginUser = LoginUser(email = email, password = password)
                         if (LoginUserFunction(context, loginUser)) {
+                            userViewModel.setUser(superUser)
                             Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
                             route.value = "home"
                         } else {

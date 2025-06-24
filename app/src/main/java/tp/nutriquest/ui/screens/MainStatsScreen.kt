@@ -55,15 +55,29 @@ fun MainStatsScreenInitialize(navController: NavController, userViewModel: UserV
         Achievement(250, "NUTRI-TIPS READ", R.drawable.openbook_icon),
     )
 
+    var prototypeAchievements = listOf(
+        Achievement(0, "DAY STREAK", R.drawable.streak_icon),
+        Achievement(0, "WEEKS OF HYDRATION", R.drawable.hydration_icon),
+        Achievement(0, "NUTRI-TIPS READ", R.drawable.openbook_icon),
+    )
+
     val progresses = listOf(
         ResolvedProgress(100, 200, R.drawable.streak_icon),
         ResolvedProgress(4, 5, R.drawable.hydration_icon),
         ResolvedProgress(250, 400, R.drawable.openbook_icon),
     )
 
+    val prototypeProgresses = listOf(
+        ResolvedProgress(0, 200, R.drawable.streak_icon),
+        ResolvedProgress(0, 5, R.drawable.hydration_icon),
+        ResolvedProgress(0, 400, R.drawable.openbook_icon),
+    )
+
 
 
     val weeklyData = listOf(4, 1, 2, 5, 1, 3, 2) //TODO mozna przekazywac dla usera
+
+    val prototypeWeeklyData = listOf(0, 0, 0, 0, 0, 0, 0)
 
     Box(modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxSize()) {
@@ -92,7 +106,7 @@ fun MainStatsScreenInitialize(navController: NavController, userViewModel: UserV
                     .background(BackgroundGrey)
             ) {
 
-                TopLogoAndStats()
+                TopLogoAndStats(userViewModel)
 
                 Box(
                     modifier = Modifier
@@ -139,9 +153,9 @@ fun MainStatsScreenInitialize(navController: NavController, userViewModel: UserV
                                 .padding(horizontal = 16.dp),
                             horizontalArrangement = Arrangement.spacedBy(12.dp)
                         ) {
-                            AchievementCompose(modifier = Modifier.weight(1f), achievements[0])
-                            AchievementCompose(modifier = Modifier.weight(1f), achievements[1])
-                            AchievementCompose(modifier = Modifier.weight(1f), achievements[2])
+                            AchievementCompose(modifier = Modifier.weight(1f), if (userViewModel.getUser()?.email =="prototype@gmail.com") prototypeAchievements[0] else achievements[0])
+                            AchievementCompose(modifier = Modifier.weight(1f), if (userViewModel.getUser()?.email =="prototype@gmail.com") prototypeAchievements[1] else achievements[1])
+                            AchievementCompose(modifier = Modifier.weight(1f), if (userViewModel.getUser()?.email =="prototype@gmail.com") prototypeAchievements[2] else achievements[2])
                         }
                         Spacer(modifier = Modifier.height(30.dp))
                         Card(
@@ -165,15 +179,15 @@ fun MainStatsScreenInitialize(navController: NavController, userViewModel: UserV
                         }
                         Spacer(modifier = Modifier.height(20.dp))
 
-                        CheckpointProgressBar(progresses[0])
+                        CheckpointProgressBar(if (userViewModel.getUser()?.email =="prototype@gmail.com") prototypeProgresses[0] else progresses[0])
 
                         Spacer(modifier = Modifier.height(25.dp))
 
-                        CheckpointProgressBar(progresses[1])
+                        CheckpointProgressBar(if (userViewModel.getUser()?.email =="prototype@gmail.com") prototypeProgresses[1] else progresses[1])
 
                         Spacer(modifier = Modifier.height(25.dp))
 
-                        CheckpointProgressBar(progresses[2])
+                        CheckpointProgressBar(if (userViewModel.getUser()?.email =="prototype@gmail.com") prototypeProgresses[2] else progresses[2])
 
                         Spacer(modifier = Modifier.height(30.dp))
 
@@ -200,7 +214,7 @@ fun MainStatsScreenInitialize(navController: NavController, userViewModel: UserV
 
                         Spacer(modifier = Modifier.height(20.dp))
 
-                        TaskChart(weeklyData = weeklyData)
+                        TaskChart(weeklyData = if (userViewModel.getUser()?.email =="prototype@gmail.com") prototypeWeeklyData else weeklyData)
                     }
                 }
             }

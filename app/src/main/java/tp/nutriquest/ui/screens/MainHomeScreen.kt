@@ -12,6 +12,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -52,7 +53,12 @@ fun MainHomeScreenInitialize(navController: NavController, userViewModel: UserVi
 
     var weeklyQuests = remember { GenerateWeeklyQuestsForUser(context, user) }.toMutableList()
 
-    val resolvedQuests = mapToResolvedWeeklyQuests(context, weeklyQuests).toMutableList()
+    val resolvedQuests = remember {
+        mutableStateListOf<ResolvedWeeklyQuest>().apply {
+            addAll(mapToResolvedWeeklyQuests(context, weeklyQuests))
+        }
+    }
+
 
 //    var quests = remember { //TODO do serializacji
 //        listOf(
@@ -140,7 +146,7 @@ fun MainHomeScreenInitialize(navController: NavController, userViewModel: UserVi
                     .background(BackgroundGrey)
             ) {
 
-                TopLogoAndStats()
+                TopLogoAndStats(userViewModel)
 
                 Box(
                     modifier = Modifier
@@ -203,9 +209,9 @@ fun MainHomeScreenInitialize(navController: NavController, userViewModel: UserVi
                         //TODO quests = GetUserFromSessionMemory().weeklyQuests
                         //TODO start przekazywania questow
                         for (index in resolvedQuests.indices) {
-                            val weeklyQuest = resolvedQuests[index]
+                            val resolvedQuest = resolvedQuests[index]
                             WeeklyQuestCompose(
-                                quest = weeklyQuest,
+                                quest = resolvedQuest,
                                 onQuestChange = { updatedQuest ->
                                     resolvedQuests[index] = updatedQuest
                                 }

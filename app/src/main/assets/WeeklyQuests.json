@@ -1,23 +1,89 @@
 [
   {
+    "title": "Eat nuts 4 times",
+    "information": "Nuts are rich in healthy fats and magnesium — aim to eat a handful 4 times this week.",
+    "notAllowedFor": ["Nuts"],
+    "progress": {
+      "currentValue": 0,
+      "maxValue": 4,
+      "iconName": "peanut_icon"
+    },
+    "isChecked": false
+  },
+  {
+    "title": "Have oats for breakfast 3 times",
+    "information": "Oats provide long-lasting energy and stabilize blood sugar — aim for 3 bowls this week.",
+    "notAllowedFor": ["Gluten"],
+    "progress": {
+      "currentValue": 0,
+      "maxValue": 3,
+      "iconName": "gluten_icon"
+    },
+    "isChecked": false
+  },
+  {
+    "title": "Enjoy yogurt with honey 3 times",
+    "information": "Support gut health with probiotics from yogurt — try to include it 3 times this week.",
+    "notAllowedFor": ["Dairy"],
+    "progress": {
+      "currentValue": 0,
+      "maxValue": 3,
+      "iconName": "dairy_icon"
+    },
+    "isChecked": false
+  },
+  {
+    "title": "Drink soy milk drinks 3 times",
+    "information": "Soy milk is a great dairy alternative — enjoy it 3 times this week.",
+    "notAllowedFor": ["Soy"],
+    "progress": {
+      "currentValue": 0,
+      "maxValue": 3,
+      "iconName": "soy_icon"
+    },
+    "isChecked": false
+  },
+  {
+    "title": "Eat seafood twice",
+    "information": "Seafood like salmon is high in omega-3s — aim for at least two servings this week.",
+    "notAllowedFor": ["Seafood"],
+    "progress": {
+      "currentValue": 0,
+      "maxValue": 2,
+      "iconName": "seafood_icon"
+    },
+    "isChecked": false
+  },
+  {
+    "title": "Eat eggs 3 times",
+    "information": "Eggs are a great source of protein and essential nutrients. Try eating them 3 times this week.",
+    "notAllowedFor": ["Eggs"],
+    "progress": {
+      "currentValue": 0,
+      "maxValue": 3,
+      "iconName": "eggs_icon"
+    },
+    "isChecked": false
+  },
+  {
     "title": "Eat vegetables",
     "information": "Eat vegetables at least 7 times this week. Boosts fiber and supports digestion. Keep it up all week!",
     "notAllowedFor": [""],
     "progress": {
       "currentValue": 0,
       "maxValue": 7,
-      "iconName": "cooking_icon"
+      "iconName": "healthy_food_icon"
     },
     "isChecked": false
   },
   {
     "title": "Drink 8 glasses of water",
     "information": "Keep yourself hydrated with at least 8 glasses of water this week.",
-    "notAllowedFor": ["Soy"],
+    "notAllowedFor": [""],
     "progress": {
       "currentValue": 0,
       "maxValue": 8,
-      "iconName": "cooking_icon"
+      "iconName": "hydration_icon"
     },
     "isChecked": false
   },
@@ -28,7 +94,7 @@
     "progress": {
       "currentValue": 0,
       "maxValue": 7,
-      "iconName": "cooking_icon"
+      "iconName": "sweets_icon"
     },
     "isChecked": false
   }

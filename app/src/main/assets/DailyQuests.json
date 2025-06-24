@@ -1,5 +1,47 @@
 [
   {
+    "title": "handful of nuts",
+    "information": "Rich in healthy fats and magnesium, they support brain health and promote satiety throughout the day.",
+    "notAllowedFor": ["Nuts"],
+    "isChecked": false
+  },
+  {
+    "title": "bowl of oats",
+    "information": "Provides complex carbohydrates and fiber, offering sustained energy and stabilizing blood sugar levels.",
+    "notAllowedFor": ["Gluten"],
+    "isChecked": false
+  },
+  {
+    "title": "avocado toast",
+    "information": "Packed with monounsaturated fats and fiber, it supports brain function and keeps you fuller for longer.",
+    "notAllowedFor": ["Gluten"],
+    "isChecked": false
+  },
+  {
+    "title": "yogurt with honey",
+    "information": "A good source of probiotics and natural sugars — supports digestive health and provides a mild energy boost.",
+    "notAllowedFor": ["Dairy"],
+    "isChecked": false
+  },
+  {
+    "title": "soy milk latte",
+    "information": "A creamy plant-based alternative to dairy that supplies protein and may support heart health.",
+    "notAllowedFor": ["Soy"],
+    "isChecked": false
+  },
+  {
+    "title": "grilled salmon",
+    "information": "Rich source of omega-3 fatty acids, which support heart, brain, and joint health.",
+    "notAllowedFor": ["Seafood"],
+    "isChecked": false
+  },
+  {
+    "title": "scrambled eggs",
+    "information": "High in protein and essential nutrients like choline, which aid brain function and muscle repair.",
+    "notAllowedFor": ["Eggs"],
+    "isChecked": false
+  },
+  {
     "title": "2 liters of water",
     "information": "Staying hydrated improves focus and overall mood.",
     "notAllowedFor": [""],
@@ -18,63 +60,21 @@
     "isChecked": false
   },
   {
-    "title": "handful of nuts",
-    "information": "Rich in healthy fats and magnesium, they support brain health and satiety.",
-    "notAllowedFor": ["Nuts"],
-    "isChecked": false
-  },
-  {
     "title": "a glass of green tea",
-    "information": "Contains L-theanine and caffeine — a combo that improves alertness without jitters.",
+    "information": "Contains L-theanine and caffeine — a combo that improves alertness and enhances calm focus without the jitters.",
     "notAllowedFor": [""],
-    "isChecked": false
-  },
-  {
-    "title": "bowl of oats",
-    "information": "Provides sustained energy.",
-    "notAllowedFor": ["Gluten"],
     "isChecked": false
   },
   {
     "title": "fresh strawberries",
-    "information": "Rich in antioxidants.",
+    "information": "Rich in antioxidants like vitamin C, they help fight oxidative stress and support skin and immune health.",
     "notAllowedFor": [""],
-    "isChecked": false
-  },
-  {
-    "title": "avocado toast",
-    "information": "Healthy fats from avocado support brain function.",
-    "notAllowedFor": ["Gluten"],
-    "isChecked": false
-  },
-  {
-    "title": "yogurt with honey",
-    "information": "Good source of probiotics.",
-    "notAllowedFor": ["Dairy"],
     "isChecked": false
   },
   {
     "title": "carrot sticks",
-    "information": "Crunchy and full of beta-carotene.",
+    "information": "Crunchy and full of beta-carotene, they support eye health and provide a satisfying, low-calorie snack.",
     "notAllowedFor": [""],
-    "isChecked": false
-  },
-  {
-    "title": "soy milk latte",
-    "information": "A creamy alternative to regular milk.",
-    "notAllowedFor": ["Soy"],
-    "isChecked": false
-  },
-  {
-    "title": "grilled salmon",
-    "information": "Rich source of omega-3 fatty acids.",
-    "notAllowedFor": ["Seafood"],
-    "isChecked": false
-  },
-  {
-    "title": "scrambled eggs",
-    "information": "High in protein and easy to digest.",
-    "notAllowedFor": ["Eggs"],
     "isChecked": false
   }
 ]
